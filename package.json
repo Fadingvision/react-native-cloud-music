@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "babel-eslint": "^8.0.2",
+    "babel-preset-react-native-stage-0": "^1.0.1",
     "eslint": "^4.11.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-friendly-formatter": "^3.0.0",
@@ -14,15 +15,12 @@
     "husky": "^0.14.3",
     "jest-expo": "^22.0.0",
     "lint-staged": "^5.0.0",
-    "react-native-scripts": "1.7.0",
     "react-test-renderer": "16.0.0-beta.5"
   },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "precommit": "lint-staged",
     "test": "node node_modules/jest/bin/jest.js --watch"
   },
@@ -31,7 +29,6 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "expo": "^22.0.2",
     "react": "16.0.0-beta.5",
     "react-native": "^0.49.5",
     "set-cookie-parser": "^2.0.0"
