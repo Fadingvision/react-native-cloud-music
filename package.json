@@ -21,6 +21,7 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
+    "precommit": "lint-staged",
     "test": "node node_modules/jest/bin/jest.js --watch"
   },
   "jest": {
@@ -32,5 +33,8 @@
     "react": "16.0.0-beta.5",
     "react-native": "^0.49.5",
     "set-cookie-parser": "^2.0.0"
+  },
+  "lint-staged": {
+    "src/**/*.js": "eslint -c ./.eslintrc.js --format node_modules/eslint-friendly-formatter --ignore-pattern *.spec.js --fix"
   }
 }
