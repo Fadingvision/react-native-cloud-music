@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
 
-const URL_PREFIX = 'http://10.0.1.232:3000';
+const URL_PREFIX = 'http://192.168.1.3:3000';
 
 function queryParams(params) {
   return Object.keys(params)

@@ -8,8 +8,8 @@ import {
   TextInput,
   Button
 } from 'react-native';
-import api from './service';
-import { STORE_KEY } from './constants';
+import api from '../../service';
+import { STORE_KEY } from '../../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,9 +29,9 @@ export default class Signin extends React.Component {
     };
   }
 
-  signin = () =>
-    api
-      .signin({
+  signin = () => {
+    const { navigate } = this.props.navigation;
+    return api.signin({
         phone: this.state.phone,
         password: this.state.password
       })
@@ -42,9 +42,10 @@ export default class Signin extends React.Component {
           STORE_KEY.USER_INFO,
           JSON.stringify(res.data)
         );
-        Alert.alert('login success!');
-        this.getRecommendSongs();
+        // Alert.alert('login success!');
+        navigate('Home', {name: res.data.profile.nickname})
       });
+  }
 
   getRecommendSongs = () => {
     api.getRecommendSongs().then(res => console.log(res.data), err => console.log(err));
