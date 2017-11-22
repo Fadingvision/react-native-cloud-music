@@ -6,14 +6,7 @@ module.exports = {
     ecmaVersion: 7,
     sourceType: 'module'
   },
-  plugins: ['babel', 'react'],
-  settings: {
-    'import/resolver': {
-      webpack: {
-        config: './build/webpack.config.base.js'
-      }
-    }
-  },
+  plugins: ['babel', 'react', 'react-native'],
   globals: {
     jest: true // jest测试全局变量
   },
@@ -31,14 +24,11 @@ module.exports = {
     // common rules
     'comma-dangle': 0,
     'no-unused-expressions': 0,
-    semi: 0,
-
+    'semi': 0,
     'arrow-parens': [2, 'as-needed']
   },
 
   env: {
-    browser: true, //  browser 全局变量, 解决window变量报错的问题
-    node: true,
     jest: true, // 添加所有的 jest 版本的测试全局变量。
     es6: true // 支持除了modules所有 ECMAScript 6 特性。
   }
