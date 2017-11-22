@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp */
 
 import React from 'react';
-import { StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import { /* DrawerNavigator, */ TabNavigator } from 'react-navigation';
 import { Button } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons'; // eslint-disable-line
