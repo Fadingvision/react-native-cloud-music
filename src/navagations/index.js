@@ -18,7 +18,7 @@ const RootNavigator = StackNavigator({
 }, {
   // Default config for all screens
   headerMode: 'screen',
-  initialRouteName: 'Home',
+  initialRouteName: 'Signin',
 });
 
 export default RootNavigator;
