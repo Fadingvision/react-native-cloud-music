@@ -8,7 +8,8 @@ module.exports = {
   },
   plugins: ['babel', 'react', 'react-native'],
   globals: {
-    jest: true // jest测试全局变量
+    jest: true,
+    fetch: true,
   },
   extends: ['airbnb', 'plugin:react/recommended'], // 配置代码检查风格
   rules: {

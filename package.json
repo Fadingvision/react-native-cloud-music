@@ -23,6 +23,7 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
+    "lint": "eslint -c ./.eslintrc.js --format node_modules/eslint-friendly-formatter --ignore-pattern *.spec.js --ignore-pattern 'node_modules/' src/ || exit 0",
     "precommit": "lint-staged",
     "prepush": "npm run test"
   },
