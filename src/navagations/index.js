@@ -3,7 +3,7 @@ import Signin from '../containers/Signin';
 import Home from '../containers/Home';
 
 const RootNavigator = StackNavigator({
-	Home: {
+  Home: {
     screen: Home,
     navigationOptions: {
       headerMode: 'none',

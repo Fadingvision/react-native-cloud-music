@@ -1,17 +1,14 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
   ToastAndroid,
   AsyncStorage,
-  // Button,
-  Alert,
   View,
   TextInput
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons'; // eslint-disable-line
 import api from '../../service';
 import { STORE_KEY } from '../../constants';
 import Validator from '../../utils/Validator';
@@ -74,9 +71,8 @@ export default class Signin extends React.Component {
 
   signin = () => {
     if (!this.validate()) return;
-    const { navigate, dispatch } = this.props.navigation;
-    console.log(this.props.navigation);
-    return api
+    const { /* navigate, */dispatch } = this.props.navigation;
+    api
       .signin({
         phone: this.state.phone,
         password: this.state.password
@@ -87,22 +83,14 @@ export default class Signin extends React.Component {
           JSON.stringify(res.data)
         );
         // navigate('Home', { name: res.data.profile.nickname });
-        dispatch(
-          NavigationActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({ routeName: 'Home' })]
-          })
-        );
+        dispatch(NavigationActions.reset({
+          index: 0,
+          actions: [NavigationActions.navigate({ routeName: 'Home' })]
+        }));
       })
       .catch(err => {
         ToastAndroid.show(err.msg, ToastAndroid.SHORT);
       });
-  };
-
-  getRecommendSongs = () => {
-    api
-      .getRecommendSongs()
-      .then(res => console.log(res.data), err => console.log(err));
   };
 
   render() {

@@ -39,7 +39,7 @@ export default function _fetch(url, method) { // eslint-disable-line no-undersco
       return response.json()
         .then(josnData => {
           res.data = josnData;
-          console.log(response)
+          // console.log(response)
           if (res.data.code && res.data.code !== SUCCESS_CODE) {
             return Promise.reject(res.data);
           }
