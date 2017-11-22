@@ -1,6 +1,7 @@
 import { AsyncStorage } from 'react-native';
 
 const URL_PREFIX = 'http://192.168.1.3:3000';
+const SUCCESS_CODE = 200;
 
 function queryParams(params) {
   return Object.keys(params)
@@ -33,11 +34,15 @@ export default function _fetch(url, method) { // eslint-disable-line no-undersco
     try {
       const response = await fetch(completeUrl, reqOptions);
       res.status = response.status;
-      res.code = response.code;
+      res.ok = response.ok;
       res.headers = response.headers;
       return response.json()
         .then(josnData => {
           res.data = josnData;
+          console.log(response)
+          if (res.data.code && res.data.code !== SUCCESS_CODE) {
+            return Promise.reject(res.data);
+          }
           return res;
         });
     } catch (err) {

@@ -6,18 +6,18 @@ const RootNavigator = StackNavigator({
 	Home: {
     screen: Home,
     navigationOptions: {
-      headerTitle: 'Home',
+      headerMode: 'none',
     },
   },
   Signin: {
     screen: Signin,
     navigationOptions: {
-      headerTitle: 'Signin',
+      headerTitle: '手机号登录',
     },
   },
 }, {
   // Default config for all screens
-  headerMode: 'none',
+  headerMode: 'screen',
   initialRouteName: 'Signin',
 });
 

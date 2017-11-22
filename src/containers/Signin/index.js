@@ -2,21 +2,49 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
+  ToastAndroid,
   AsyncStorage,
+  // Button,
   Alert,
   View,
-  TextInput,
-  Button
+  TextInput
 } from 'react-native';
+import { Button } from 'react-native-elements';
+import { NavigationActions } from 'react-navigation';
+import { Ionicons } from '@expo/vector-icons';
 import api from '../../service';
 import { STORE_KEY } from '../../constants';
+import Validator from '../../utils/Validator';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
+    paddingTop: 50,
+    paddingLeft: 20,
+    paddingRight: 20
+  },
+
+  inputLine: {
+    height: 60,
+    alignSelf: 'stretch',
+    flexDirection: 'row'
+  },
+
+  input: {
+    flex: 1,
+    height: 60,
+    borderBottomColor: '#f0f1f2',
+    borderBottomWidth: 0
+  },
+  icon: {
+    paddingTop: 20,
+    paddingRight: 10
+  },
+  iconPortrait: {
+    paddingTop: 20,
+    paddingRight: 15
   }
 });
 
@@ -29,43 +57,96 @@ export default class Signin extends React.Component {
     };
   }
 
+  validate() {
+    const validatorIns = new Validator();
+    validatorIns
+      .addRule(this.state.phone, [
+        { rule: 'isEmpty', errMsg: '请输入手机号' },
+        { rule: 'isIegalPhone', errMsg: '请输入11位数字的手机号' }
+      ])
+      .addRule(this.state.password, [
+        { rule: 'isEmpty', errMsg: '请输入密码' }
+      ]);
+    return validatorIns.startVal(msg => {
+      ToastAndroid.show(msg, ToastAndroid.SHORT);
+    });
+  }
+
   signin = () => {
-    const { navigate } = this.props.navigation;
-    return api.signin({
+    if (!this.validate()) return;
+    const { navigate, dispatch } = this.props.navigation;
+    console.log(this.props.navigation);
+    return api
+      .signin({
         phone: this.state.phone,
         password: this.state.password
       })
       .then(async res => {
-        // console.log(res.headers.map['set-cookie'][0]);
-        // console.log(res.data);
         await AsyncStorage.setItem(
           STORE_KEY.USER_INFO,
           JSON.stringify(res.data)
         );
-        // Alert.alert('login success!');
-        navigate('Home', {name: res.data.profile.nickname})
+        // navigate('Home', { name: res.data.profile.nickname });
+        dispatch(
+          NavigationActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: 'Home' })]
+          })
+        );
+      })
+      .catch(err => {
+        ToastAndroid.show(err.msg, ToastAndroid.SHORT);
       });
-  }
+  };
 
   getRecommendSongs = () => {
-    api.getRecommendSongs().then(res => console.log(res.data), err => console.log(err));
+    api
+      .getRecommendSongs()
+      .then(res => console.log(res.data), err => console.log(err));
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
-          style={{ height: 40, width: 200 }}
-          placeholder="phone"
-          onChangeText={phone => this.setState({ phone })}
+        <View style={styles.inputLine}>
+          <Ionicons
+            name="md-phone-portrait"
+            style={styles.iconPortrait}
+            size={30}
+            color="#ccc"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="请输入手机号"
+            onChangeText={phone => this.setState({ phone })}
+          />
+        </View>
+        <View style={styles.inputLine}>
+          <Ionicons
+            name="md-settings"
+            style={styles.icon}
+            size={25}
+            color="#ccc"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="请输入密码"
+            onChangeText={password => this.setState({ password })}
+          />
+        </View>
+        <Button
+          middle
+          onPress={this.signin}
+          title="登录"
+          buttonStyle={{
+            backgroundColor: '#d23023',
+            alignSelf: 'stretch',
+            width: 300,
+            borderRadius: 15,
+            marginTop: 20
+          }}
+          textStyle={{ textAlign: 'center' }}
         />
-        <TextInput
-          style={{ height: 40, width: 200 }}
-          placeholder="password"
-          onChangeText={password => this.setState({ password })}
-        />
-
-        <Button onPress={this.signin} title="press to login" color="#d23023" />
       </View>
     );
   }
