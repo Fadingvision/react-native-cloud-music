@@ -1,6 +1,6 @@
 
 
-### 环境配置
+## 环境配置
 
 1. 调试
 
@@ -11,4 +11,40 @@
   环境变量的配置：必须确保项目中使用的，$ANDROID_HOME的系统环境变量（通常也是项目默认使用的）,genymotion使用的sdk路径保持完全一致。
 
 - 真机调试：保证上面环境配置正确的同时，让你的手机开启USB调试模式即可。
+
+
+
+## Development
+
+### redux, react-redux
+
+- redux-persisit => state持久化
+- redux-saga => redux effect
+- seamless-immutable => state 的imutable
+- reduxsauce => 减少redux样板代码
+
+
+### react-native
+
+- react-navagation => 路由库
+- react-native-vector-icons => 图表库
+- react-native-i18n => 国际化
+- react-native-animatable => 动画
+- apiSauce => 基于fetch的二次封装
+- react-native-elements => react-native UI库
+- storyBook => out of box的开发测试helper
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
