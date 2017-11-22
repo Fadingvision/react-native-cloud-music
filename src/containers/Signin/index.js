@@ -118,6 +118,7 @@ export default class Signin extends React.Component {
           />
           <TextInput
             style={styles.input}
+            secureTextEntry
             placeholder="请输入密码"
             onChangeText={password => this.setState({ password })}
           />

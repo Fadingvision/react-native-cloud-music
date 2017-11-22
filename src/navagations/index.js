@@ -6,7 +6,7 @@ const RootNavigator = StackNavigator({
   Home: {
     screen: Home,
     navigationOptions: {
-      headerMode: 'none',
+      headerTitle: '首页',
     },
   },
   Signin: {
@@ -18,7 +18,7 @@ const RootNavigator = StackNavigator({
 }, {
   // Default config for all screens
   headerMode: 'screen',
-  initialRouteName: 'Signin',
+  initialRouteName: 'Home',
 });
 
 export default RootNavigator;
