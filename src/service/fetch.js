@@ -30,14 +30,18 @@ export default function _fetch(url, method) { // eslint-disable-line no-undersco
     }
 
     const res = {};
-    const response = await fetch(completeUrl, reqOptions);
-    res.status = response.status;
-    res.code = response.code;
-    res.headers = response.headers;
-
-    return response.json().then(josnData => {
-      res.data = josnData;
-      return res;
-    });
+    try {
+      const response = await fetch(completeUrl, reqOptions);
+      res.status = response.status;
+      res.code = response.code;
+      res.headers = response.headers;
+      return response.json()
+        .then(josnData => {
+          res.data = josnData;
+          return res;
+        });
+    } catch (err) {
+      return Promise.reject(err)
+    }
   };
 }
