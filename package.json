@@ -4,6 +4,8 @@
   "private": true,
   "devDependencies": {
     "babel-eslint": "^8.0.2",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.10",
+    "babel-plugin-transform-remove-console": "^6.8.5",
     "eslint": "^4.11.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-friendly-formatter": "^3.0.0",
