@@ -36,6 +36,7 @@ export default function _fetch(url, method) { // eslint-disable-line no-undersco
       res.status = response.status;
       res.ok = response.ok;
       res.headers = response.headers;
+      if (!res.ok) return Promise.reject(res);
       return response.json()
         .then(josnData => {
           res.data = josnData;

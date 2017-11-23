@@ -1,81 +1,58 @@
 /* eslint-disable react/no-multi-comp */
 
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { /* DrawerNavigator, */ TabNavigator } from 'react-navigation';
+import { View, Text } from 'react-native';
+import { DrawerNavigator, TabNavigator } from 'react-navigation';
 import { Button } from 'react-native-elements';
-import { Ionicons } from '@expo/vector-icons'; // eslint-disable-line
 
-const styles = StyleSheet.create({
-  icon: {
-    width: 24,
-    height: 24,
+function MyMusic() {
+  return (
+    <View>
+      <Text>MyMusic</Text>
+    </View>
+  );
+}
+
+function Home() {
+  return (
+    <View>
+      <Text>Home</Text>
+    </View>
+  );
+}
+
+function Notifications() {
+  return (
+    <View>
+      <Text>Notifications</Text>
+    </View>
+  );
+}
+
+class SideBar extends React.Component {
+  toSignin = () => {
+    const { navigate } = this.props.navigation;
+    navigate('Signin');
+  }
+
+  render() {
+    return (
+      <View>
+        <Button title="登录" onPress={this.toSignin} />
+      </View>
+    )
+  }
+}
+
+const HomeTabNav = TabNavigator({
+  MyMusic: {
+    screen: MyMusic,
   },
-});
-
-
-class Home extends React.Component {
-  static navigationOptions = {
-    drawerLabel: 'Home',
-    drawerIcon: () => (
-      <Ionicons
-        name="md-phone-portrait"
-        style={styles.icon}
-        size={30}
-        color="#ccc"
-      />
-    ),
-  };
-
-  render() {
-    return (
-      <Button
-        onPress={() => this.props.navigation.navigate('Notifications')}
-        title="Go to notifications"
-      />
-    );
-  }
-}
-
-class MyNotificationsScreen extends React.Component {
-  static navigationOptions = {
-    drawerLabel: 'Notifications',
-    drawerIcon: () => (
-      <Ionicons
-        name="md-phone-portrait"
-        style={styles.icon}
-        size={30}
-        color="#ccc"
-      />
-    ),
-  };
-
-  render() {
-    return (
-      <Button
-        onPress={() => this.props.navigation.goBack()}
-        title="Go back home"
-      />
-    );
-  }
-}
-
-
-// const MyApp = DrawerNavigator({
-//   Home: {
-//     screen: Home,
-//   },
-//   Notifications: {
-//     screen: MyNotificationsScreen,
-//   },
-// });
-
-const MyApp = TabNavigator({
   Home: {
     screen: Home,
   },
   Notifications: {
-    screen: MyNotificationsScreen,
+    screen: Notifications,
   },
 }, {
   tabBarPosition: 'top',
@@ -85,5 +62,15 @@ const MyApp = TabNavigator({
   },
 });
 
+const DrawerNav = DrawerNavigator({
+  Home: {
+    screen: HomeTabNav,
+  },
+}, {
+  contentComponent: SideBar,
+  drawerBackgroundColor: '#ccc',
+  initialRouteName: 'Home',
+});
 
-export default MyApp;
+
+export default DrawerNav;
