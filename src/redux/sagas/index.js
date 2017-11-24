@@ -1,4 +1,4 @@
-import { put, call, /*fork, all,*/ takeLatest } from 'redux-saga/effects'
+import { put, call, /* fork, all, */ takeLatest } from 'redux-saga/effects'
 import api from 'SERVICE';
 import { SIGN_IN } from '../actions/signin';
 

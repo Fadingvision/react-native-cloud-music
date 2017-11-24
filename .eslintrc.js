@@ -10,6 +10,7 @@ module.exports = {
   globals: {
     jest: true,
     fetch: true,
+    __DEV__: true,
   },
   "settings": {
     "import/resolver": {

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 // import { NavigationActions } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons'; // eslint-disable-line
-import api from '../../service';
 import actionCreators from 'ACTIONS/signin';
 import Validator from '../../utils/Validator';
 
@@ -40,7 +39,9 @@ const styles = StyleSheet.create({
   }
 });
 
-@connect(null, actionCreators)
+@connect(state => ({
+  error: state.userInfo.error,
+}), actionCreators)
 export default class Signin extends React.Component {
   constructor(props) {
     super(props);

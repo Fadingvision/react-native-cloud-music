@@ -37,6 +37,9 @@ store.close = () => store.dispatch(END);
 
 export const persistor = persistStore(store);
 
+// clear storage when app is reloaded.
+if (__DEV__) persistor.purge();
+
 if (module.hot) {
   // Enable Webpack hot module replacement for reducers
   module.hot.accept('../reducer', () => {
