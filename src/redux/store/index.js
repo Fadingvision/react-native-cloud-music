@@ -1,17 +1,24 @@
 import { applyMiddleware, createStore, compose } from 'redux';
-// import createSagaMiddleware, { END } from 'redux-saga';
-import ReduxThunk from 'redux-thunk'
+import createSagaMiddleware, { END } from 'redux-saga';
+// import ReduxThunk from 'redux-thunk';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/es/storage';
 import rootReducer from '../reducer';
 import enhancers from './enhancers';
 
 // Note: logger must be the last middleware in chain,
 // otherwise it will log thunk and promise, not actual actions
-// const sagaMiddleware = createSagaMiddleware()
-const middlewares = [ReduxThunk];
-if (process.env.NODE_ENV === 'development') {
+const sagaMiddleware = createSagaMiddleware();
+const middlewares = [sagaMiddleware];
+if (__DEV__) {
   const { logger } = require('redux-logger'); // eslint-disable-line
   middlewares.push(logger);
 }
+
+const config = {
+  key: 'root',
+  storage
+};
 
 /**
  * 接受三个参数
@@ -20,16 +27,20 @@ if (process.env.NODE_ENV === 'development') {
  * - 一个用于增强store的各种中间件函数(可选)
  * @type {[type]}
  */
-const store = createStore(rootReducer, compose(applyMiddleware(...middlewares), ...enhancers));
+export const store = createStore(
+  persistReducer(config, rootReducer),
+  compose(applyMiddleware(...middlewares), ...enhancers)
+);
 
-// store.runSaga = sagaMiddleware.run;
-// store.close = () => store.dispatch(END);
+store.runSaga = sagaMiddleware.run;
+store.close = () => store.dispatch(END);
+
+export const persistor = persistStore(store);
 
 if (module.hot) {
   // Enable Webpack hot module replacement for reducers
   module.hot.accept('../reducer', () => {
-    const nextRootReducer = require('../reducer/index');  // eslint-disable-line
+    const nextRootReducer = require('../reducer/index'); // eslint-disable-line
     store.replaceReducer(nextRootReducer);
   });
 }
-export default store;

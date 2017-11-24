@@ -43,21 +43,6 @@ export function emptyFilter(str) {
   return str;
 }
 
-export function changeTitle(title) {
-  document.title = title;
-  const iframe = document.createElement('iframe');
-  iframe.style.display = 'none';
-  iframe.setAttribute('src', 'http://named.cn/page/take/img/icon_phone.png');
-  const loadFuncListener = function loadFuncListener() {
-    setTimeout(() => {
-      iframe.removeEventListener('load', loadFuncListener);
-      document.body.removeChild(iframe);
-    }, 0);
-  };
-  iframe.addEventListener('load', loadFuncListener);
-  document.body.appendChild(iframe);
-}
-
 /**
  * improvement countDown
  */

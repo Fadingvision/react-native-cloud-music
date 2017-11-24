@@ -1,21 +1,22 @@
-import { take, put, call, fork, all } from 'redux-saga/effects'
+import { take, put, call, fork, all, takeLatest } from 'redux-saga/effects'
 import api from 'SERVICE';
-import { SIGN_IN } from '../action/signin';
+import { SIGN_IN } from '../actions/signin';
 
-function* watchLogin() {
-  while (true) { // eslint-disable-line
-    const { phone, pwd } = yield take(SIGN_IN.REQUEST);
-    try {
-      yield call(api.signin, { phone, pwd });
-      yield put({ type: SIGN_IN.SUCCESS })
-    } catch (error) {
-      yield put({ type: SIGN_IN.FAILURE, error })
-    }
+function* watchLogin(action) {
+  try {
+    const { phone, password } = action;
+    const userInfo = yield call(api.signin, { phone, password });
+    yield put({ type: SIGN_IN.SUCCESS, userInfo })
+  } catch (error) {
+    yield put({ type: SIGN_IN.FAILURE, error })
   }
 }
 
-export default function* root() {
+const root = function* root() {
   yield all([
-    fork(watchLogin),
+    takeLatest(SIGN_IN.REQUEST, watchLogin),
   ])
 }
+
+
+export default root;

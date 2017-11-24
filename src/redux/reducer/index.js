@@ -1,13 +1,10 @@
 import { combineReducers } from 'redux';
 import createReducer from 'UTILS/reduxHelper';
 import initialState from '../store/initialState';
-import { RESULT_ACTION_HANDLERS } from '../action/result';
-import { SEARCH_ACTION_HANDLERS } from '../action/search';
-// import errorReducer from './errorReducer';
+import { SIGNIN_ACTION_HANDLERS } from '../actions/signin';
 
 const rootReducer = combineReducers({
-  result: createReducer(initialState.result, RESULT_ACTION_HANDLERS),
-  search: createReducer(initialState.search, SEARCH_ACTION_HANDLERS),
+  userInfo: createReducer(initialState.userInfo, SIGNIN_ACTION_HANDLERS),
 });
 
 export default rootReducer;

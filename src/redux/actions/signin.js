@@ -11,12 +11,12 @@ export const SIGN_IN = createRequestTypes('SIGN_IN');
 export default {
   signin({
     phone,
-    pwd
+    password
   }) {
     return {
       type: SIGN_IN.REQUEST,
       phone,
-      pwd
+      password
     }
   }
 }
@@ -24,7 +24,7 @@ export default {
 // ================================
 // Action Handler
 // ================================
-export const ACTION_HANDLERS = {
-  [SIGN_IN.FAILURE]: () => ({ fail: true }),
-  [SIGN_IN.REQUEST]: () => ({ fail: false })
+export const SIGNIN_ACTION_HANDLERS = {
+  [SIGN_IN.FAILURE]: (state, error) => ({ ...state, error }),
+  [SIGN_IN.SUCCESS]: (state, userInfo) => ({ userInfo }),
 }
