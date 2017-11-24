@@ -51,7 +51,7 @@ const RootNavigator = StackNavigator({
   // Default config for all screens
   headerMode: 'screen',
   // @TODO: Add splash Screen as initialRouteName
-  initialRouteName: 'Home',
+  initialRouteName: 'Signin',
 });
 
 export default RootNavigator;

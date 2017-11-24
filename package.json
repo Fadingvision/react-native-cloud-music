@@ -38,7 +38,10 @@
     "prepush": "npm run test"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-native|react-navigation|redux-persist)/"
+    ]
   },
   "dependencies": {
     "expo": "^22.0.0",

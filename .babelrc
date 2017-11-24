@@ -1,10 +1,31 @@
 {
   "presets": ["babel-preset-expo"],
-  "plugins": [
-    
-  ],
   "env": {
     "development": {
+      "plugins": ["transform-react-jsx-source",'transform-decorators-legacy',
+    [
+      "module-resolver",
+      {
+        "extensions": [".js", ".ios.js", ".android.js"],
+        "cwd": "babelrc",
+        "alias": {
+            'SRC': './src',
+            'IMAGES': './src/images',
+            'THEMES': './src/themes',
+            'CONTAINERS': './src/containers',
+            'COMPONENTS': './src/components',
+            'CONSTANTS': './src/constants',
+            'SERVICE': './src/service',
+            'UTILS': './src/utils',
+            'REDUX': './src/redux',
+            'SAGAS': './src/redux/sagas',
+            'ACTIONS': './src/redux/actions',
+        }
+      }
+    ]]
+    },
+
+    "test": {
       "plugins": ["transform-react-jsx-source",'transform-decorators-legacy',
     [
       "module-resolver",
