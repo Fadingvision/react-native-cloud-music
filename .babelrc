@@ -1,11 +1,30 @@
 {
   "presets": ["babel-preset-expo"],
+  "plugins": [
+    'transform-decorators-legacy',
+    ["module-resolver",
+      {
+        "root": ["./src"],
+        "alias":
+        {
+            'SRC': './',
+            'IMAGES': 'images',
+            'THEMES': 'themes',
+            'CONTAINERS': 'containers',
+            'COMPONENTS': 'components',
+            'CONSTANTS': 'constants',
+            'SERVICE': 'service',
+            'UTILS': 'utils',
+            'REDUX': 'redux',
+        }
+    }]
+  ],
   "env": {
     "development": {
       "plugins": ["transform-react-jsx-source"]
     },
     "production": {
-      "plugins": ["transform-remove-console"]
+      "plugins": ["transform-remove-console", "transform-react-remove-prop-types"]
     }
   }
 }
