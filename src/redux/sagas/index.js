@@ -1,8 +1,8 @@
-import { take, put, call, fork, all, takeLatest } from 'redux-saga/effects'
+import { put, call, /*fork, all,*/ takeLatest } from 'redux-saga/effects'
 import api from 'SERVICE';
 import { SIGN_IN } from '../actions/signin';
 
-function* watchLogin(action) {
+const watchLogin = function* watchLogin(action) {
   try {
     const { phone, password } = action;
     const userInfo = yield call(api.signin, { phone, password });
@@ -13,9 +13,7 @@ function* watchLogin(action) {
 }
 
 const root = function* root() {
-  yield all([
-    takeLatest(SIGN_IN.REQUEST, watchLogin),
-  ])
+  yield takeLatest(SIGN_IN.REQUEST, watchLogin);
 }
 
 
