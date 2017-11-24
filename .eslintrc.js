@@ -11,6 +11,11 @@ module.exports = {
     jest: true,
     fetch: true,
   },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
   extends: ['airbnb', 'plugin:react/recommended'], // 配置代码检查风格
   rules: {
     // react
