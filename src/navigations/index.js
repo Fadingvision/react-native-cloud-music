@@ -4,6 +4,7 @@ import Home from 'CONTAINERS/Home';
 import MyMusic from 'CONTAINERS/MyMusic';
 import News from 'CONTAINERS/News';
 import SideBar from 'CONTAINERS/SideBar';
+import MainTabBar from 'COMPONENTS/MainTabBar';
 
 const HomeTabNav = TabNavigator({
   MyMusic: {
@@ -17,9 +18,25 @@ const HomeTabNav = TabNavigator({
   },
 }, {
   tabBarPosition: 'top',
-  animationEnabled: true,
+  animationEnabled: false,
+  lazy: true,
+  swipeEnabled: true,
+  tabBarComponent: MainTabBar,
   tabBarOptions: {
-    activeTintColor: '#e91e63',
+    activeTintColor: '#fff',
+    inactiveTintColor: '#ccc',
+    labelStyle: {
+      fontSize: 12,
+    },
+    tabStyle: {
+      width: 100,
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    style: {
+      backgroundColor: '#f23023',
+    },
   },
 });
 
@@ -36,9 +53,8 @@ const DrawerNav = DrawerNavigator({
 const RootNavigator = StackNavigator({
   Home: {
     screen: DrawerNav,
-    // @TODO: remove header in spec screen
     navigationOptions: {
-      headerTitle: '首页',
+      header: null,
     },
   },
   Signin: {
@@ -51,7 +67,7 @@ const RootNavigator = StackNavigator({
   // Default config for all screens
   headerMode: 'screen',
   // @TODO: Add splash Screen as initialRouteName
-  initialRouteName: 'Signin',
+  initialRouteName: 'Home',
 });
 
 export default RootNavigator;
