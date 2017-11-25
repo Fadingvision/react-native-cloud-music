@@ -14,6 +14,7 @@
             'THEMES': './src/themes',
             'CONTAINERS': './src/containers',
             'COMPONENTS': './src/components',
+            'NAVIGATIONS': './src/navigations',
             'CONSTANTS': './src/constants',
             'SERVICE': './src/service',
             'UTILS': './src/utils',
