@@ -2,6 +2,8 @@ import { put, call, /* fork, all, */ takeLatest } from 'redux-saga/effects'
 import { NavigationActions } from 'react-navigation';
 import api from 'SERVICE';
 import { SIGN_IN } from 'ACTIONS/signin';
+import { GET_BANNER } from 'ACTIONS/recommend';
+import watchBannerRequest from './recommend';
 
 
 const resetAction = NavigationActions.reset({
@@ -24,6 +26,7 @@ const watchLogin = function* watchLogin(action) {
 
 const root = function* root() {
   yield takeLatest(SIGN_IN.REQUEST, watchLogin);
+  yield takeLatest(GET_BANNER.REQUEST, watchBannerRequest);
 }
 
 

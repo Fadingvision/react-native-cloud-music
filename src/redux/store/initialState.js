@@ -1,3 +1,6 @@
 export default {
-  userInfo: {},
+	userInfo: {},
+	recommend: {
+		banners: []
+	}
 };
