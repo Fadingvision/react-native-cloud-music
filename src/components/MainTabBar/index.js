@@ -13,8 +13,6 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: '#d23023',
     borderTopWidth: 2,
-    paddingLeft: 20,
-    paddingRight: 20,
     alignItems: 'center',
     justifyContent: 'space-around',
   },

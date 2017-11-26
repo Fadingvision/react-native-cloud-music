@@ -1,17 +1,51 @@
 import { StackNavigator, DrawerNavigator, TabNavigator } from 'react-navigation';
 import Signin from 'CONTAINERS/Signin';
-import Home from 'CONTAINERS/Home';
+import Recommend from 'CONTAINERS/Recommend';
+import PlayList from 'CONTAINERS/PlayList';
+import Dj from 'CONTAINERS/Dj';
+import RankList from 'CONTAINERS/RankList';
 import MyMusic from 'CONTAINERS/MyMusic';
 import News from 'CONTAINERS/News';
 import SideBar from 'CONTAINERS/SideBar';
 import MainTabBar from 'COMPONENTS/MainTabBar';
+import HomeTabBar from 'COMPONENTS/HomeTabBar';
 
 const HomeTabNav = TabNavigator({
+  Recommend: {
+    screen: Recommend,
+  },
+  PlayList: {
+    screen: PlayList,
+  },
+  Dj: {
+    screen: Dj,
+  },
+  RankList: {
+    screen: RankList,
+  },
+}, {
+  tabBarPosition: 'top',
+  tabBarComponent: HomeTabBar,
+  animationEnabled: false,
+  swipeEnabled: false,
+  tabBarOptions: {
+    activeTintColor: '#333',
+    inactiveTintColor: '#ccc',
+    labelStyle: {
+      fontSize: 12,
+    },
+    style: {
+      backgroundColor: '#fff',
+    },
+  },
+});
+
+const MainTabNav = TabNavigator({
   MyMusic: {
     screen: MyMusic,
   },
   Home: {
-    screen: Home,
+    screen: HomeTabNav,
   },
   News: {
     screen: News,
@@ -42,7 +76,7 @@ const HomeTabNav = TabNavigator({
 
 const DrawerNav = DrawerNavigator({
   Home: {
-    screen: HomeTabNav,
+    screen: MainTabNav,
   },
 }, {
   contentComponent: SideBar,
