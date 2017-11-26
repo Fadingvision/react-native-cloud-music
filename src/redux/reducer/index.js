@@ -7,6 +7,7 @@ import navReducer from './nav';
 const rootReducer = combineReducers({
   userInfo: createReducer(initialState.userInfo, SIGNIN_ACTION_HANDLERS),
   nav: navReducer,
+  _persisit: state => state || {}
 });
 
 export default rootReducer;
