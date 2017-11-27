@@ -1,3 +1,4 @@
+import Immutable from 'seamless-immutable';
 import { createRequestTypes } from 'UTILS/reduxHelper'
 
 // ================================
@@ -20,6 +21,6 @@ export default {
 // Action Handler
 // ================================
 export const RECOMMEND_ACTION_HANDLERS = {
-  [GET_BANNER.FAILURE]: (state, { error }) => ({ ...state, error }),
-  [GET_BANNER.SUCCESS]: (state, { banners }) => ({ ...state, banners }),
+  [GET_BANNER.FAILURE]: (state, { error }) => Immutable.set(state, 'error', error),
+  [GET_BANNER.SUCCESS]: (state, { banners }) => Immutable.set(state, 'banners', banners),
 }
