@@ -23,7 +23,6 @@
 - seamless-immutable => state 的imutable
 - reduxsauce => 减少redux样板代码
 
-
 ### react-native
 
 - react-navagation => 路由库
@@ -34,12 +33,10 @@
 - react-native-elements => react-native UI库
 - storyBook => out of box的开发测试helper
 
+## Issues
 
-
-## Questions
-
-1. 上方被安卓的导航条遮住的问题
-2. 热更新报错的问题
+- [x] 上方被安卓的导航条遮住的问题(在App中加上StatusBar控制状态栏)
+- [ ] 热更新报错的问题
 
 
 
