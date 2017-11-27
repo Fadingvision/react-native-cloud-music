@@ -1,4 +1,3 @@
-import Immutable from 'seamless-immutable';
 import { createRequestTypes } from 'UTILS/reduxHelper'
 
 // ================================
@@ -26,6 +25,6 @@ export default {
 // Action Handler
 // ================================
 export const SIGNIN_ACTION_HANDLERS = {
-  [SIGN_IN.FAILURE]: (state, { error }) => Immutable.set(state, 'error', error),
-  [SIGN_IN.SUCCESS]: (state, { userInfo }) => Immutable.replace(state, { ...userInfo }),
+  [SIGN_IN.FAILURE]: (state, { error }) => state.set('error', error),
+  [SIGN_IN.SUCCESS]: (state, { userInfo }) => state.replace({ ...userInfo }),
 }
