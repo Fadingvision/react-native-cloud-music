@@ -25,6 +25,6 @@ export default {
 // Action Handler
 // ================================
 export const SIGNIN_ACTION_HANDLERS = {
-  [SIGN_IN.FAILURE]: (state, { error }) => ({ ...state, error }),
-  [SIGN_IN.SUCCESS]: (state, { userInfo }) => ({ ...userInfo }),
+  [SIGN_IN.FAILURE]: (state, { error }) => state.set('error', error),
+  [SIGN_IN.SUCCESS]: (state, { userInfo }) => state.replace({ ...userInfo }),
 }

@@ -1,9 +1,8 @@
-import { put, call } from 'redux-saga/effects'
-// import { NavigationActions } from 'react-navigation';
+import { put, call, fork, takeLatest } from 'redux-saga/effects'
 import api from 'SERVICE';
 import { GET_BANNER } from 'ACTIONS/recommend';
 
-const watchBannerRequest = function* watchLogin() {
+const getBanner = function* getBanner() {
   try {
     const { banners } = yield call(api.getBanners);
     yield put({ type: GET_BANNER.SUCCESS, banners });
@@ -12,4 +11,10 @@ const watchBannerRequest = function* watchLogin() {
   }
 }
 
-export default watchBannerRequest;
+const watchGetBanner = function* watchGetBanner() {
+  yield takeLatest(GET_BANNER.REQUEST, getBanner);
+}
+
+export default [
+  fork(watchGetBanner)
+];

@@ -20,6 +20,6 @@ export default {
 // Action Handler
 // ================================
 export const RECOMMEND_ACTION_HANDLERS = {
-  [GET_BANNER.FAILURE]: (state, { error }) => ({ ...state, error }),
-  [GET_BANNER.SUCCESS]: (state, { banners }) => ({ ...state, banners }),
+  [GET_BANNER.FAILURE]: (state, { error }) => state.set('error', error),
+  [GET_BANNER.SUCCESS]: (state, { banners }) => state.set('banners', banners),
 }
