@@ -1,6 +1,7 @@
 export default {
   userInfo: {},
   recommend: {
-    banners: []
+    banners: [],
+    recommendPlayLists: [],
   }
 };

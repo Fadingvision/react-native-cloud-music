@@ -9,6 +9,7 @@ import News from 'CONTAINERS/News';
 import SideBar from 'CONTAINERS/SideBar';
 import MainTabBar from 'COMPONENTS/MainTabBar';
 import HomeTabBar from 'COMPONENTS/HomeTabBar';
+import WebView from 'COMPONENTS/WebView';
 
 const HomeTabNav = TabNavigator({
   Recommend: {
@@ -95,6 +96,17 @@ const RootNavigator = StackNavigator({
     screen: Signin,
     navigationOptions: {
       headerTitle: '手机号登录',
+    },
+  },
+  WebView: {
+    screen: WebView,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#f23023'
+      },
+      headerBackTitleStyle: {
+        color: '#fff'
+      }
     },
   },
 }, {
