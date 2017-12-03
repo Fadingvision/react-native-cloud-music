@@ -1,8 +1,9 @@
 import { applyMiddleware, createStore, compose } from 'redux';
+import storage from 'redux-persist/lib/storage'
 import createSagaMiddleware, { END } from 'redux-saga';
+import Immutable from 'seamless-immutable';
 // import ReduxThunk from 'redux-thunk';
-import { persistReducer, persistStore } from 'redux-persist';
-import storage from 'redux-persist/es/storage';
+import { persistReducer, persistStore, createTransform } from 'redux-persist';
 import rootReducer from '../reducer';
 import enhancers from './enhancers';
 import screenTrackingMiddleware from './screenTrackingMiddleware';
@@ -16,9 +17,18 @@ if (__DEV__) {
   middlewares.push(logger);
 }
 
+let myTransform = createTransform(
+  // transform state coming from redux on its way to being serialized and stored
+  state => Immutable(state),
+  // transform state coming from storage, on its way to be rehydrated into redux
+  state => Immutable.isImmutable(state) ? Immutable.asMutable(state) : state
+)
+
 const config = {
   key: 'root',
-  storage
+  debug: true,
+  transforms: [myTransform],
+  storage,
 };
 
 export const store = createStore(
@@ -29,7 +39,9 @@ export const store = createStore(
 store.runSaga = sagaMiddleware.run;
 store.close = () => store.dispatch(END);
 
-export const persistor = persistStore(store);
+export const persistor = persistStore(store, null, () => {
+  console.log(store.getState())
+});
 
 // clear storage when app is reloaded.
 // if (__DEV__) persistor.purge();

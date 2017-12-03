@@ -9,6 +9,7 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
+  AsyncStorage,
   TouchableWithoutFeedback
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: 'center',
     color: '#333',
-    fontSize: 13
+    fontSize: 12
   },
   section: {
     paddingTop: 20,
@@ -100,6 +101,7 @@ const styles = StyleSheet.create({
   sectionItemName: {
     color: '#333',
     lineHeight: 20,
+    fontSize: 12,
     paddingLeft: 5
   },
   sectionItemLabel: {
@@ -107,7 +109,6 @@ const styles = StyleSheet.create({
     right: 5,
     top: 5,
     flexDirection: 'row',
-    color: '#fff'
   },
   sectionItemLabelText: {
     color: '#fff',
@@ -134,6 +135,7 @@ function SectionHeader({ title }) {
 )
 export default class Recommend extends React.Component {
   componentDidMount() {
+    AsyncStorage.getAllKeys().then(console.log)
     this.props.getBanners();
     this.props.getRecommendPlayLists();
   }
@@ -158,14 +160,15 @@ export default class Recommend extends React.Component {
           autoplay
           autoplayTimeout={3}
         >
-          {banners.map(banner => (
+          {banners.map((banner, index) => (
             <TouchableWithoutFeedback
-              key={banner.targetId}
+              key={index}
               onPress={() => this.handleBannerPress(banner)}
             >
               <Image
                 source={{ uri: banner.pic }}
                 style={{ width, height: 160 }}
+                key={index}
                 resizeMode="contain"
               />
             </TouchableWithoutFeedback>
@@ -175,87 +178,99 @@ export default class Recommend extends React.Component {
     );
   }
 
-  render() {
+  renderFm() {
+    return (
+      <View style={styles.fmContainer}>
+        <View style={styles.fmBox}>
+          <View style={styles.fmIconContainer}>
+            <Icon
+              type="material-community"
+              name="radio"
+              size={30}
+              underlayColor="white"
+              color="#f23023"
+            />
+          </View>
+          <Text style={styles.fmText}>私人FM</Text>
+        </View>
+        <View style={styles.fmBox}>
+          <View style={styles.fmIconContainer}>
+            <Icon
+              type="font-awesome"
+              name="calendar-o"
+              size={30}
+              color="#f23023"
+            />
+            <Text style={styles.date}>{new Date().getDate()}</Text>
+          </View>
+          <Text style={styles.fmText}>每日歌曲推荐</Text>
+        </View>
+        <View style={styles.fmBox}>
+          <View style={styles.fmIconContainer}>
+            <Icon
+              type="material-community"
+              name="chart-bar-stacked"
+              size={30}
+              color="#f23023"
+            />
+          </View>
+          <Text style={styles.fmText}>云音乐热歌榜</Text>
+        </View>
+      </View>
+    )
+  }
+
+  renderPlayList() {
     const { recommendPlayLists } = this.props;
+    return (
+      <View style={styles.section}>
+        <SectionHeader title="推荐歌单" />
+        <View style={styles.sectionBodyContainer}>
+          {recommendPlayLists.map(playList => (
+            <View style={styles.sectionItem} key={playList.id}>
+              <TouchableOpacity
+                activeOpacity={0.9}
+                onPress={() => {
+                  // console.log('展现弹窗')
+                }}
+                onLongPress={() => {
+                  // console.log('展现弹窗');
+                }}
+              >
+                <Image
+                  source={{ uri: playList.picUrl }}
+                  style={{ width: (width - 4) / 3, height: 140 }}
+                  resizeMode="contain"
+                />
+                <View style={styles.sectionItemLabel}>
+                  <Icon
+                    type="feather"
+                    name="headphones"
+                    size={11}
+                    color="white"
+                  />
+                  <Text style={styles.sectionItemLabelText}>
+                    {playList.playCount > 100000
+                      ? `${+Math.floor(playList.playCount / 10000)}万`
+                      : parseInt(playList.playCount, 10)}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <Text style={styles.sectionItemName}>{playList.name}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
+    )
+  }
+
+  render() {
 
     return (
       <ScrollView style={styles.container}>
         {this.renderSwiper()}
-        <View style={styles.fmContainer}>
-          <View style={styles.fmBox}>
-            <View style={styles.fmIconContainer}>
-              <Icon
-                type="material-community"
-                name="radio"
-                size={30}
-                underlayColor="white"
-                color="#f23023"
-              />
-            </View>
-            <Text style={styles.fmText}>私人FM</Text>
-          </View>
-          <View style={styles.fmBox}>
-            <View style={styles.fmIconContainer}>
-              <Icon
-                type="font-awesome"
-                name="calendar-o"
-                size={30}
-                color="#f23023"
-              />
-              <Text style={styles.date}>{new Date().getDate()}</Text>
-            </View>
-            <Text style={styles.fmText}>每日歌曲推荐</Text>
-          </View>
-          <View style={styles.fmBox}>
-            <View style={styles.fmIconContainer}>
-              <Icon
-                type="material-community"
-                name="chart-bar-stacked"
-                size={30}
-                color="#f23023"
-              />
-            </View>
-            <Text style={styles.fmText}>云音乐热歌榜</Text>
-          </View>
-        </View>
-        <View style={styles.section}>
-          <SectionHeader title="推荐歌单" />
-          <View style={styles.sectionBodyContainer}>
-            {recommendPlayLists.map(playList => (
-              <View style={styles.sectionItem} key={playList.id}>
-                <TouchableOpacity
-                  activeOpacity={0.9}
-                  onPress={() => {
-                    // console.log('展现弹窗')
-                  }}
-                  onLongPress={() => {
-                    // console.log('展现弹窗');
-                  }}
-                >
-                  <Image
-                    source={{ uri: playList.picUrl }}
-                    style={{ width: (width - 4) / 3, height: 140 }}
-                    resizeMode="contain"
-                  />
-                  <View style={styles.sectionItemLabel}>
-                    <Icon
-                      type="feather"
-                      name="headphones"
-                      size={11}
-                      color="white"
-                    />
-                    <Text style={styles.sectionItemLabelText}>
-                      {playList.playCount > 100000
-                        ? `${+Math.floor(playList.playCount / 10000)}万`
-                        : parseInt(playList.playCount, 10)}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-                <Text style={styles.sectionItemName}>{playList.name}</Text>
-              </View>
-            ))}
-          </View>
-        </View>
+        {this.renderFm()}
+        {this.renderPlayList()}
       </ScrollView>
     );
   }
