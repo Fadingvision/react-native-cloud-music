@@ -265,7 +265,6 @@ export default class Recommend extends React.Component {
   }
 
   render() {
-
     return (
       <ScrollView style={styles.container}>
         {this.renderSwiper()}

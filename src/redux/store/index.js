@@ -17,11 +17,11 @@ if (__DEV__) {
   middlewares.push(logger);
 }
 
-let myTransform = createTransform(
+const myTransform = createTransform(
   // transform state coming from redux on its way to being serialized and stored
   state => Immutable(state),
   // transform state coming from storage, on its way to be rehydrated into redux
-  state => Immutable.isImmutable(state) ? Immutable.asMutable(state) : state
+  state => (Immutable.isImmutable(state) ? Immutable.asMutable(state) : state)
 )
 
 const config = {

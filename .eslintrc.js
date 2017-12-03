@@ -31,6 +31,7 @@ module.exports = {
     // common rules
     'comma-dangle': 0,
     'no-unused-expressions': 0,
+    'class-methods-use-this': 0,
     'semi': 0,
     'arrow-parens': [2, 'as-needed']
   },
