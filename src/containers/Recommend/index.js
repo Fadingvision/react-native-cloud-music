@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   swiperContainer: {
+    flex: 1,
     width,
     height: 160
   },
@@ -134,10 +135,17 @@ function SectionHeader({ title }) {
   actionCreators
 )
 export default class Recommend extends React.Component {
+  state = {
+    isSwiperVisible: false,
+  };
+
   componentDidMount() {
     AsyncStorage.getAllKeys().then(console.log)
     if (!this.props.banners.length) this.props.getBanners();
     if (!this.props.recommendPlayLists.length) this.props.getRecommendPlayLists();
+    setTimeout(() => {this.setState({
+      isSwiperVisible: true,
+    })}, 0);
   }
 
   handleBannerPress = banner => {
@@ -148,27 +156,27 @@ export default class Recommend extends React.Component {
 
   renderSwiper() {
     const { banners } = this.props;
+    if (!this.state.isSwiperVisible) return null;
     return (
       <View style={styles.swiperContainer}>
         <Swiper
           width={width}
           height={160}
-          style={{
-            height: 160,
-            backgroundColor: '#000000'
+          paginationStyle={{
+            bottom: 5,
           }}
           autoplay
           autoplayTimeout={3}
         >
           {banners.map((banner, index) => (
             <TouchableWithoutFeedback
-              key={index}
+              key={banner.pic}
               onPress={() => this.handleBannerPress(banner)}
             >
               <Image
                 source={{ uri: banner.pic }}
                 style={{ width, height: 160 }}
-                resizeMode="contain"
+                key={index}
               />
             </TouchableWithoutFeedback>
           ))}
