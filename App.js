@@ -11,7 +11,8 @@ store.runSaga(rootSaga);
 const styles = StyleSheet.create({
   applicationView: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight
+    paddingTop: StatusBar.currentHeight,
+    backgroundColor: '#f23023'
   }
 });
 
@@ -20,7 +21,12 @@ export default function App() {
     <Provider store={store}>
       <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
         <View style={styles.applicationView}>
-          <StatusBar backgroundColor="rgba(0,0,0,.2)" />
+          <StatusBar
+            translucent={true}
+            animated={false}
+            hidden={false}
+            backgroundColor="transparent"
+          />
           <ReduxNavigation />
         </View>
       </PersistGate>
