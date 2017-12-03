@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, StatusBar } from 'react-native';
+import { View, StyleSheet, StatusBar, ActivityIndicator } from 'react-native';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { store, persistor } from 'REDUX/store';
@@ -10,16 +10,17 @@ store.runSaga(rootSaga);
 
 const styles = StyleSheet.create({
   applicationView: {
-    flex: 1
+    flex: 1,
+    paddingTop: StatusBar.currentHeight
   }
 });
 
 export default function App() {
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
         <View style={styles.applicationView}>
-          <StatusBar barStyle="light-content" />
+          <StatusBar backgroundColor="rgba(0,0,0,.2)" />
           <ReduxNavigation />
         </View>
       </PersistGate>
