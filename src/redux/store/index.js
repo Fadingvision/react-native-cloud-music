@@ -18,15 +18,16 @@ if (__DEV__) {
 }
 
 const myTransform = createTransform(
+  // transform state coming from storage, on its way to be rehydrated into redux
+  state => (Immutable.isImmutable(state) ? Immutable.asMutable(state) : state),
   // transform state coming from redux on its way to being serialized and stored
   state => Immutable(state),
-  // transform state coming from storage, on its way to be rehydrated into redux
-  state => (Immutable.isImmutable(state) ? Immutable.asMutable(state) : state)
 )
 
 const config = {
   key: 'root',
   debug: true,
+  blacklist: ['nav'],
   transforms: [myTransform],
   storage,
 };

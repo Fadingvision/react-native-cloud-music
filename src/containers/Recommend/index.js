@@ -136,8 +136,8 @@ function SectionHeader({ title }) {
 export default class Recommend extends React.Component {
   componentDidMount() {
     AsyncStorage.getAllKeys().then(console.log)
-    this.props.getBanners();
-    this.props.getRecommendPlayLists();
+    if (!this.props.banners.length) this.props.getBanners();
+    if (!this.props.recommendPlayLists.length) this.props.getRecommendPlayLists();
   }
 
   handleBannerPress = banner => {
@@ -168,7 +168,6 @@ export default class Recommend extends React.Component {
               <Image
                 source={{ uri: banner.pic }}
                 style={{ width, height: 160 }}
-                key={index}
                 resizeMode="contain"
               />
             </TouchableWithoutFeedback>
