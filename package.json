@@ -54,6 +54,7 @@
     "redux": "^3.7.2",
     "redux-persist": "^5.4.0",
     "redux-saga": "^0.16.0",
+    "redux-thunk": "^2.2.0",
     "seamless-immutable": "^7.1.2"
   },
   "lint-staged": {
