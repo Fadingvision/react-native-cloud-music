@@ -35,7 +35,7 @@
 
 ## Issues
 
-- [] 上方被安卓的导航条遮住的问题(StatusBar not working)
+- [ ] 上方被安卓的导航条遮住的问题(StatusBar not working)
 - [ ] 热更新报错的问题
 
 
