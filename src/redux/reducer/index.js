@@ -4,11 +4,13 @@ import createReducer from 'UTILS/reduxHelper';
 import initialState from '../store/initialState';
 import { SIGNIN_ACTION_HANDLERS } from '../actions/signin';
 import { RECOMMEND_ACTION_HANDLERS } from '../actions/recommend';
+import { DETAIL_ACTION_HANDLERS } from '../actions/currentPlayListDetail';
 import navReducer from './nav';
 
 const rootReducer = combineReducers({
   userInfo: createReducer(Immutable(initialState.userInfo), SIGNIN_ACTION_HANDLERS),
   recommend: createReducer(Immutable(initialState.recommend), RECOMMEND_ACTION_HANDLERS),
+  currentPlayListDetail: createReducer(initialState.currentPlayListDetail, DETAIL_ACTION_HANDLERS),
   nav: navReducer,
   // _persist: state => state || {}
 });

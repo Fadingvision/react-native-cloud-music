@@ -143,9 +143,11 @@ export default class Recommend extends React.Component {
     AsyncStorage.getAllKeys().then(console.log)
     if (!this.props.banners.length) this.props.getBanners();
     if (!this.props.recommendPlayLists.length) this.props.getRecommendPlayLists();
-    setTimeout(() => {this.setState({
-      isSwiperVisible: true,
-    })}, 0);
+    setTimeout(() => {
+      this.setState({
+        isSwiperVisible: true,
+      })
+    }, 0);
   }
 
   handleBannerPress = banner => {
@@ -228,7 +230,7 @@ export default class Recommend extends React.Component {
   }
 
   renderPlayList() {
-    const { recommendPlayLists } = this.props;
+    const { recommendPlayLists, navigation } = this.props;
     return (
       <View style={styles.section}>
         <SectionHeader title="推荐歌单" />
@@ -238,7 +240,7 @@ export default class Recommend extends React.Component {
               <TouchableOpacity
                 activeOpacity={0.9}
                 onPress={() => {
-                  // console.log('展现弹窗')
+                  navigation.navigate('PlayListDetail', { id: playList.id });
                 }}
                 onLongPress={() => {
                   // console.log('展现弹窗');

@@ -3,5 +3,6 @@ export default {
   recommend: {
     banners: [],
     recommendPlayLists: [],
-  }
+  },
+  currentPlayListDetail: {}
 };

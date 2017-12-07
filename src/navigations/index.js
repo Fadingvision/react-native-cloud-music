@@ -2,6 +2,7 @@ import { StackNavigator, DrawerNavigator, TabNavigator } from 'react-navigation'
 import Signin from 'CONTAINERS/Signin';
 import Recommend from 'CONTAINERS/Recommend';
 import PlayList from 'CONTAINERS/PlayList';
+import PlayListDetail from 'CONTAINERS/PlayListDetail';
 import Dj from 'CONTAINERS/Dj';
 import RankList from 'CONTAINERS/RankList';
 import MyMusic from 'CONTAINERS/MyMusic';
@@ -96,6 +97,12 @@ const RootNavigator = StackNavigator({
     screen: Signin,
     navigationOptions: {
       headerTitle: '手机号登录',
+    },
+  },
+  PlayListDetail: {
+    screen: PlayListDetail,
+    navigationOptions: {
+      header: null,
     },
   },
   WebView: {
