@@ -35,7 +35,7 @@
 
 ## Issues
 
-- [x] 上方被安卓的导航条遮住的问题(在App中加上StatusBar控制状态栏)
+- [] 上方被安卓的导航条遮住的问题(StatusBar not working)
 - [ ] 热更新报错的问题
 
 
