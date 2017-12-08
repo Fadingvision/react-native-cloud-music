@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Text,
@@ -6,37 +6,37 @@ import {
   ScrollView,
   StatusBar,
   TouchableOpacity,
-  Image,
-} from "react-native";
-import { connect } from "react-redux";
-import { Icon } from "react-native-elements";
-
-import actionCreators from "ACTIONS/currentPlayListDetail";
+  TouchableNativeFeedback,
+  Image
+} from 'react-native';
+import { connect } from 'react-redux';
+import { Icon } from 'react-native-elements';
+import actionCreators from 'ACTIONS/currentPlayListDetail';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
   playListInfoContainer: {
-    backgroundColor: "rgba(0, 0, 0, .3)"
+    backgroundColor: 'rgba(0, 0, 0, .3)'
   },
 
   // PlayList Header
 
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     height: 50
   },
-  headerText: { color: "#fff", fontSize: 18, flex: 1 },
+  headerText: { color: '#fff', fontSize: 18, flex: 1 },
   headerRight: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center"
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
   },
   iconContainer: {
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     height: 45,
     width: 45,
     margin: 0
@@ -48,53 +48,53 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 10,
-    paddingBottom: 20
+    paddingBottom: 10
   },
 
   playListSection: {
-    justifyContent: "flex-start",
-    flexDirection: "row"
+    justifyContent: 'flex-start',
+    flexDirection: 'row'
   },
 
   playListCover: {
-    position: "relative",
+    position: 'relative',
     marginRight: 15
   },
   sectionItemLabel: {
-    position: "absolute",
+    position: 'absolute',
     right: 5,
     top: 5,
-    flexDirection: "row"
+    flexDirection: 'row'
   },
   sectionItemLabelText: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 10,
     marginLeft: 5
   },
 
   playListDesc: {
-    justifyContent: "flex-start",
+    justifyContent: 'flex-start',
     flex: 1
   },
 
   playListTitle: {
-    color: "#fff",
+    color: '#fff',
     marginTop: 7,
     fontSize: 20,
-    flexWrap: "wrap"
+    flexWrap: 'wrap'
   },
 
   creatorInfo: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginTop: 20
   },
 
   creatorName: {
-    color: "#f0f0f0",
+    color: '#f0f0f0',
     fontSize: 12,
     marginLeft: 5,
-    marginRight: 3,
+    marginRight: 3
   },
 
   avatar: {
@@ -108,13 +108,140 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 20,
+    alignItems: 'center',
+    marginTop: 20
   },
-
+  operateItem: {
+    flex: 1,
+    alignItems: 'center'
+  },
   operateText: {
     color: '#fff'
+  },
+
+  // PlayList songs
+
+  playAllContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#fff',
+    height: 60,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0'
+  },
+  playAll: {
+    flex: 1,
+    paddingLeft: 20,
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  playAllText: {
+    color: '#333',
+    marginLeft: 15,
+    fontSize: 16
+  },
+  playAllCountText: {
+    fontSize: 14,
+    color: '#999'
+  },
+
+  selectAll: {
+    paddingRight: 10,
+    paddingLeft: 10,
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+
+  selectAllText: {
+    fontSize: 14,
+    marginLeft: 5,
+    color: '#333'
   }
 });
+
+const songItemStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    height: 65
+  },
+
+  songOrder: {
+    width: 65,
+    textAlign: 'center',
+    color: '#999',
+    fontSize: 18
+  },
+
+  songInfoContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottomColor: '#f1f1f1',
+    height: 65,
+    borderBottomWidth: 1
+  },
+
+  songInfo: {
+    flex: 1
+  },
+
+  songName: {
+    fontSize: 16,
+    color: '#333'
+  },
+
+  songCreator: {
+    fontSize: 12,
+    color: '#999'
+  },
+
+  songMore: {
+    paddingRight: 20,
+    height: 65,
+    justifyContent: 'center',
+    paddingLeft: 10
+  }
+});
+
+function Song(props) {
+  return (
+    <TouchableNativeFeedback onPress={() => {}}>
+      <View style={songItemStyles.container}>
+        <View style={songItemStyles.songLeft}>
+          <Text style={songItemStyles.songOrder}>{props.order}</Text>
+        </View>
+
+        <View style={songItemStyles.songInfoContainer}>
+          <View style={songItemStyles.songInfo}>
+            <Text style={songItemStyles.songName}>
+              {props.name}
+              <Text>{props.alia}</Text>
+            </Text>
+            <Text style={songItemStyles.songCreator}>
+              {props.artist}-{props.album}
+            </Text>
+          </View>
+          <TouchableNativeFeedback onPress={() => {}}>
+            <View style={songItemStyles.songMore}>
+              <Icon
+                type="entypo"
+                size={15}
+                color="#999"
+                name="dots-three-vertical"
+              />
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+      </View>
+    </TouchableNativeFeedback>
+  );
+}
 
 @connect(
   state => ({
@@ -126,13 +253,15 @@ export default class PlayListDetail extends React.Component {
   componentDidMount() {
     const { id } = this.props.navigation.state.params;
     const { detail } = this.props;
-    if (detail.code !== 200) this.props.getDetail(id);
+    this.props.getDetail(id);
     console.log(detail);
   }
 
   render() {
     const { goBack } = this.props.navigation;
     const { playlist } = this.props.detail;
+    // const { playlist } = this.props.detail;
+    if (!playlist) return null;
     return (
       <ScrollView style={styles.container}>
         <StatusBar backgroundColor="rgba(0, 0, 0, .3)" />
@@ -177,9 +306,7 @@ export default class PlayListDetail extends React.Component {
               <TouchableOpacity
                 activeOpacity={0.9}
                 style={styles.playListCover}
-                onPress={() => {
-                  
-                }}
+                onPress={() => {}}
               >
                 <Image
                   source={{ uri: playlist.coverImgUrl }}
@@ -205,8 +332,7 @@ export default class PlayListDetail extends React.Component {
                 <TouchableOpacity
                   activeOpacity={0.9}
                   style={styles.creatorInfo}
-                  onPress={() => {
-                  }}
+                  onPress={() => {}}
                 >
                   <Image
                     source={{ uri: playlist.creator.avatarUrl }}
@@ -228,42 +354,70 @@ export default class PlayListDetail extends React.Component {
             </View>
 
             <View style={styles.operateBar}>
-              <TouchableOpacity activeOpacity={0.9} style={styles.operateItem}>
-                <Icon
-                  name="add-to-queue"
-                  size={20}
-                  color="white"
-                />
-                <Text style={styles.operateText}>{playlist.subscribedCount}</Text>
+              <TouchableOpacity activeOpacity={0.6} style={styles.operateItem}>
+                <Icon name="add-to-queue" size={22} color="white" />
+                <Text style={styles.operateText}>
+                  {playlist.subscribedCount}
+                </Text>
               </TouchableOpacity>
-              <TouchableOpacity activeOpacity={0.9} style={styles.operateItem}>
+              <TouchableOpacity activeOpacity={0.6} style={styles.operateItem}>
                 <Icon
                   type="material-community"
                   name="comment-text-outline"
-                  size={20}
+                  size={22}
                   color="white"
                 />
                 <Text style={styles.operateText}>{playlist.commentCount}</Text>
               </TouchableOpacity>
-              <TouchableOpacity activeOpacity={0.9} style={styles.operateItem}>
+              <TouchableOpacity activeOpacity={0.6} style={styles.operateItem}>
                 <Icon
                   type="simple-line-icon"
                   name="share"
-                  size={20}
+                  size={22}
                   color="white"
                 />
                 <Text style={styles.operateText}>{playlist.shareCount}</Text>
               </TouchableOpacity>
-              <TouchableOpacity activeOpacity={0.9} style={styles.operateItem}>
-                <Icon
-                  type="feather"
-                  name="download"
-                  size={22}
-                  color="white"
-                />
+              <TouchableOpacity activeOpacity={0.6} style={styles.operateItem}>
+                <Icon type="feather" name="download" size={24} color="white" />
                 <Text style={styles.operateText}>下载</Text>
               </TouchableOpacity>
             </View>
+          </View>
+        </View>
+        <View style={styles.playListSongContainer}>
+          <View style={styles.playAllContainer}>
+            <TouchableNativeFeedback onPress={() => {}}>
+              <View style={styles.playAll}>
+                <Icon name="play-circle-outline" size={28} color="#333" />
+                <Text style={styles.playAllText}>
+                  播放全部
+                  <Text style={styles.playAllCountText}>
+                    (共{playlist.trackCount}首)
+                  </Text>
+                </Text>
+              </View>
+            </TouchableNativeFeedback>
+
+            <TouchableNativeFeedback onPress={() => {}}>
+              <View style={styles.selectAll}>
+                <Icon name="list" type="feather" size={18} color="#333" />
+                <Text style={styles.selectAllText}>多选</Text>
+              </View>
+            </TouchableNativeFeedback>
+          </View>
+
+          <View>
+            {playlist.tracks.map((track, index) => {
+              const song = {
+                order: index + 1,
+                name: track.name,
+                alia: track.alia.join(','),
+                artist: track.ar.map(item => item.name).join('/'),
+                album: track.al.name
+              };
+              return <Song {...song} key={track.id}/>;
+            })}
           </View>
         </View>
       </ScrollView>
