@@ -35,8 +35,9 @@
 
 ## Issues
 
-- [ ] 上方被安卓的导航条遮住的问题(StatusBar not working)
-- [ ] 热更新报错的问题
+- [x] 上方被安卓的导航条遮住的问题(在expo配置中添加androidStatusBar解决问题)
+- [x] 热更新报错的问题(在replaceReducer中添加persistReducer)
+- [ ] StatusBar切换页面时感觉颜色切换没有和页面融合一体，体验不好，寻找更好的解决方案
 
 
 
