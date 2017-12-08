@@ -34,6 +34,6 @@ export default {
 // Action Handler
 // ================================
 export const DETAIL_ACTION_HANDLERS = {
-  [GET_DETAIL.SUCCESS]: (state, { currentPlayListDetail }) => ({ ...currentPlayListDetail }),
+  [GET_DETAIL.SUCCESS]: (state, { currentPlayListDetail }) => state.merge(currentPlayListDetail),
 
 };

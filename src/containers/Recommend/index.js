@@ -9,7 +9,6 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
-  AsyncStorage,
   TouchableWithoutFeedback
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -140,7 +139,6 @@ export default class Recommend extends React.Component {
   };
 
   componentDidMount() {
-    AsyncStorage.getAllKeys().then(console.log)
     if (!this.props.banners.length) this.props.getBanners();
     if (!this.props.recommendPlayLists.length) this.props.getRecommendPlayLists();
     setTimeout(() => {
