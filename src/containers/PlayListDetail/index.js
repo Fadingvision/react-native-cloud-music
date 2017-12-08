@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
 
@@ -35,6 +35,9 @@ export default class PlayListDetail extends React.Component {
     const { goBack } = this.props.navigation;
     return (
       <View style={styles.container}>
+        <StatusBar
+          backgroundColor="#ccc"
+        />
         <View style={styles.header}>
           <Icon
             type="ionicon"

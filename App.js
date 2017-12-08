@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   applicationView: {
     flex: 1,
     paddingTop: StatusBar.currentHeight,
-    backgroundColor: '#f23023'
+    backgroundColor: 'transparent'
   }
 });
 
@@ -22,10 +22,11 @@ export default function App() {
       <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
         <View style={styles.applicationView}>
           <StatusBar
-            translucent={true}
-            animated={false}
+            translucent
+            animated
             hidden={false}
-            backgroundColor="transparent"
+            barStyle='light-content'
+            backgroundColor="#d23023"
           />
           <ReduxNavigation />
         </View>
