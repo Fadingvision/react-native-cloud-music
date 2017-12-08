@@ -23,7 +23,7 @@ export default function App() {
         <View style={styles.applicationView}>
           <StatusBar
             translucent
-            animated
+            animated={false}
             hidden={false}
             barStyle='light-content'
             backgroundColor="#d23023"
