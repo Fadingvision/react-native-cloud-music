@@ -140,7 +140,7 @@ export default class Recommend extends React.Component {
 
   componentDidMount() {
     if (!this.props.banners.length) this.props.getBanners();
-    if (!this.props.recommendPlayLists.length) this.props.getRecommendPlayLists();
+    /* if (!this.props.recommendPlayLists.length) */this.props.getRecommendPlayLists();
     setTimeout(() => {
       this.setState({
         isSwiperVisible: true,
@@ -238,7 +238,7 @@ export default class Recommend extends React.Component {
               <TouchableOpacity
                 activeOpacity={0.9}
                 onPress={() => {
-                  navigation.navigate('PlayListDetail', { id: playList.id });
+                  navigation.navigate('PlayListDetail', { playListBasicInfo: playList });
                 }}
                 onLongPress={() => {
                   // console.log('展现弹窗');

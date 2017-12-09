@@ -19,7 +19,7 @@ export default {
       } catch (err) {
         dispatch({ type: GET_DETAIL.FAILURE, err });
       }
-    }
+    };
   },
 
   goToWeb(url) {
@@ -27,13 +27,16 @@ export default {
       routeName: 'WebView',
       params: { url }
     });
-  },
+  }
 };
 
 // ================================
 // Action Handler
 // ================================
 export const DETAIL_ACTION_HANDLERS = {
-  [GET_DETAIL.SUCCESS]: (state, { currentPlayListDetail }) => state.merge(currentPlayListDetail),
+  [GET_DETAIL.SUCCESS]: (state, { currentPlayListDetail }) =>
+    state.merge([currentPlayListDetail, { isFetching: false }]),
 
+  [GET_DETAIL.REQUEST]: state =>
+    state.set('isFetching', true)
 };

@@ -2,7 +2,9 @@ export default {
   userInfo: {},
   recommend: {
     banners: [],
-    recommendPlayLists: [],
+    recommendPlayLists: []
   },
-  currentPlayListDetail: {}
+  currentPlayListDetail: {
+    isFetching: false
+  }
 };
