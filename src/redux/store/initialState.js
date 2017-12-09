@@ -5,6 +5,9 @@ export default {
     recommendPlayLists: []
   },
   currentPlayListDetail: {
-    isFetching: false
+    isFetching: false,
+    playlist: {
+      tracks: []
+    }
   }
 };

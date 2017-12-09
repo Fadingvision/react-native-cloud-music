@@ -288,7 +288,6 @@ export default class PlayListDetail extends React.Component {
     const { goBack } = this.props.navigation;
     const { playlist } = this.props.detail;
     const { isFetching } = this.props;
-    // const { playlist } = this.props.detail;
     if (!playlist) return null;
 
     const songsData = playlist.tracks.map((track, index) => ({
@@ -368,7 +367,7 @@ export default class PlayListDetail extends React.Component {
                 <Text style={styles.playListTitle}>
                   {playListBasicInfo.name}
                 </Text>
-                {!isFetching && (
+                {!isFetching && playlist.creator && (
                   <TouchableOpacity
                     activeOpacity={0.9}
                     style={styles.creatorInfo}
