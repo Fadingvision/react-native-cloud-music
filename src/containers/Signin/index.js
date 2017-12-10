@@ -1,9 +1,8 @@
 import React from 'react';
 import { StyleSheet, ToastAndroid, View, TextInput } from 'react-native';
 import { connect } from 'react-redux';
-import { Button } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 // import { NavigationActions } from 'react-navigation';
-import { Icon } from 'react-native-elements';
 import actionCreators from 'ACTIONS/signin';
 import Validator from '../../utils/Validator';
 
