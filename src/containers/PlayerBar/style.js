@@ -30,8 +30,19 @@ const styles = StyleSheet.create({
     color: '#999'
   },
   iconContainer: {
-    marginRight: 10,
-    marginLeft: 10
+    paddingRight: 10,
+    paddingLeft: 10,
+  },
+
+  playButtonContainer: {
+    paddingTop: 10,
+    width: 50,
+    height: 50,
+  },
+
+  playButton: {
+    position: 'absolute',
+    top: 5,
   },
 
   backgroundVideo: {}

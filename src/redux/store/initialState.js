@@ -16,11 +16,11 @@ export default {
     currentMusic: null,
     playList: [],
     playerStatus: {
-      // isPlaying: false,
-      // toalTime: 200,
-      // currentTime: 22,
-      // percent: 20,
-      // playerModel: 'loop',
+      isPlaying: false,
+      duration: 0,
+      currentTime: 0,
+      percent: 0,
+      loop: false,
     },
   }
 };

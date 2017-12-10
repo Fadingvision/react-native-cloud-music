@@ -274,7 +274,7 @@ arrify@^1.0.0, arrify@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/arrify/download/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
 
-art@^0.10.0:
+art@^0.10.0, art@^0.10.1:
   version "0.10.1"
   resolved "http://registry.npm.taobao.org/art/download/art-0.10.1.tgz#38541883e399225c5e193ff246e8f157cf7b2146"
 
@@ -4274,6 +4274,13 @@ react-devtools-core@^2.5.0:
   dependencies:
     shell-quote "^1.6.1"
     ws "^2.0.3"
+
+react-native-circular-progress@^0.1.0:
+  version "0.1.0"
+  resolved "http://registry.npm.taobao.org/react-native-circular-progress/download/react-native-circular-progress-0.1.0.tgz#046d182a4851f75742f56b1f05fdab28cac2d0ed"
+  dependencies:
+    art "^0.10.1"
+    prop-types "^15.6.0"
 
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"

@@ -1,31 +1,35 @@
 import React from 'react';
-import { View, Text, TouchableNativeFeedback, Image } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableNativeFeedback,
+  TouchableOpacity,
+  Image,
+  ToastAndroid
+} from 'react-native';
 import { Icon } from 'react-native-elements';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import Video from 'react-native-video';
 import { connect } from 'react-redux';
 import actionCreator from 'ACTIONS/player';
+import colors from 'THEMES/color';
 import styles from './style';
 
 @connect(state => state.player, actionCreator)
 export default class PlayerBar extends React.Component {
-  componentDidMount() {
-    // this.player
+  componentWillMount() {
+    // disable the player when component inital mount
+    this.props.togglePlayStatus(false);
   }
 
   loadStart = (...args) => {
     console.log(args);
   };
-  setDuration = (...args) => {
-    console.log(args);
-  };
-  setTime = (...args) => {
-    console.log(args);
-  };
   onEnd = (...args) => {
-    console.log(args);
+    // determin wheter loop or what's the next song to play
   };
-  videoError = (...args) => {
-    console.log(args);
+  videoError = () => {
+    ToastAndroid.show('网络错误', ToastAndroid.SHORT);
   };
   onBuffer = (...args) => {
     console.log(args);
@@ -33,13 +37,10 @@ export default class PlayerBar extends React.Component {
   onTimedMetadata = (...args) => {
     console.log(args);
   };
-  backgroundVideo = (...args) => {
-    console.log(args);
-  };
 
   render() {
-    const { currentMusic /* , playList */ /* , playerStatus */ } = this.props;
-    // const { navigate } = this.props;
+    const { currentMusic, playList, playerStatus } = this.props;
+    const { navigate, togglePlayStatus } = this.props;
     if (!currentMusic) return null;
     return (
       <TouchableNativeFeedback
@@ -51,33 +52,26 @@ export default class PlayerBar extends React.Component {
           {currentMusic.musicUrl && (
             <Video
               source={{ uri: currentMusic.musicUrl }} // Can be a URL or a local file.
-              ref={ref => {
-                this.player = ref;
-              }} // Store reference
-              rate={1.0} // 0 is paused, 1 is normal.
-              volume={1.0} // 0 is muted, 1 is normal.
-              muted={false} // Mutes the audio entirely.
-              paused={false} // Pauses playback entirely.
+              ref={ref => { this.player = ref }}
+              rate={playerStatus.rate} // 0 is paused, 1 is normal.
+              volume={playerStatus.volume} // 0 is muted, 1 is normal.
+              muted={playerStatus.muted} // Mutes the audio entirely.
+              paused={!playerStatus.isPlaying} // Pauses playback entirely.
               // Fill the whole screen at aspect ratio.*
               resizeMode="cover"
-              repeat // Repeat forever.
+              repeat={playerStatus.loop} // Repeat forever.
               // Audio continues to play when app entering background.
-              playInBackground={false}
+              playInBackground={true}
               // [iOS] Video continues to play when control or notification center are shown.
               playWhenInactive={false}
-              // [iOS] ignore | obey - When 'ignore',
-              // audio will still play with the iOS hard silent switch set to silent. When 'obey',
-              // audio will toggle with the switch.
-              // When not specified, will inherit audio settings as usual.
-              ignoreSilentSwitch="ignore"
               // [iOS] Interval to fire onProgress (default to ~250ms)
-              progressUpdateInterval={250.0}
+              progressUpdateInterval={500}
               // Callback when video starts to load
               onLoadStart={this.loadStart}
               // Callback when video loads
-              onLoad={this.setDuration}
+              onLoad={this.props.updateDuration}
               // Callback every ~250ms with currentTime
-              onProgress={this.setTime}
+              onProgress={this.props.updatePercent}
               // Callback when playback finishes
               onEnd={this.onEnd}
               // Callback when video cannot be loaded
@@ -86,7 +80,6 @@ export default class PlayerBar extends React.Component {
               onBuffer={this.onBuffer}
               // Callback when the stream receive some metadata
               onTimedMetadata={this.onTimedMetadata}
-              style={styles.backgroundVideo}
             />
           )}
 
@@ -101,18 +94,42 @@ export default class PlayerBar extends React.Component {
               <Text style={styles.artist}>{currentMusic.artist}</Text>
             </View>
           </View>
+
+          <TouchableOpacity
+            opacity={0.9}
+            onPress={() => {
+              togglePlayStatus(!playerStatus.isPlaying);
+            }}
+          >
+            <View style={[styles.iconContainer, styles.playButtonContainer]}>
+              <AnimatedCircularProgress
+                size={30}
+                width={1}
+                fill={playerStatus.percent}
+                tintColor={colors.mainColor}
+                backgroundColor="#333"
+                rotation={0}
+                children={() => (
+                  <Icon
+                    containerStyle={[
+                      styles.playButton,
+                      { left: playerStatus.isPlaying ? 10 : 12 }
+                    ]}
+                    type="ionicon"
+                    size={20}
+                    color="#666"
+                    name={playerStatus.isPlaying ? 'ios-pause' : 'ios-play'}
+                  />
+                )}
+              />
+            </View>
+          </TouchableOpacity>
           <Icon
             containerStyle={styles.iconContainer}
-            type="feather"
-            size={35}
-            onPress={() => {}}
-            color="#666"
-            name="play-circle"
-          />
-          <Icon
-            containerStyle={styles.iconContainer}
-            size={40}
-            onPress={() => {}}
+            size={33}
+            onPress={() => {
+              alert(12333);
+            }}
             color="#666"
             name="playlist-play"
           />

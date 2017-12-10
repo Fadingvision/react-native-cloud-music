@@ -22,15 +22,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  playListInfoContainer: {
-    backgroundColor: 'rgba(0, 0, 0, .3)'
-  },
-
   // PlayList Header
-
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: 'rgba(0, 0, 0, .3)',
     alignItems: 'center',
     height: 50
   },
@@ -51,6 +47,7 @@ const styles = StyleSheet.create({
 
   playListInfo: {
     paddingLeft: 20,
+    backgroundColor: 'rgba(0, 0, 0, .3)',
     paddingRight: 20,
     paddingTop: 10,
     paddingBottom: 10
@@ -263,44 +260,44 @@ export default class PlayListDetail extends React.Component {
       picUrl: track.al.picUrl,
     }));
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <StatusBar backgroundColor="rgba(0, 0, 0, .3)" />
-        <View style={styles.playListInfoContainer}>
-          <View style={styles.header}>
+        <View style={styles.header}>
+          <Icon
+            type="ionicon"
+            size={35}
+            reverse
+            color="rgba(0,0,0,.1)"
+            reverseColor="#fff"
+            name="ios-arrow-round-back"
+            containerStyle={styles.iconContainer}
+            onPress={() => goBack(null)}
+          />
+          <Text style={styles.headerText}>歌单</Text>
+          <View style={styles.headerRight}>
             <Icon
-              type="ionicon"
-              size={35}
+              type="feather"
+              size={22}
               reverse
-              color="rgba(0,0,0,.1)"
               reverseColor="#fff"
-              name="ios-arrow-round-back"
+              color="rgba(0,0,0,.1)"
               containerStyle={styles.iconContainer}
               onPress={() => goBack(null)}
+              name="search"
             />
-            <Text style={styles.headerText}>歌单</Text>
-            <View style={styles.headerRight}>
-              <Icon
-                type="feather"
-                size={22}
-                reverse
-                reverseColor="#fff"
-                color="rgba(0,0,0,.1)"
-                containerStyle={styles.iconContainer}
-                onPress={() => goBack(null)}
-                name="search"
-              />
-              <Icon
-                type="entypo"
-                size={20}
-                reverse
-                reverseColor="#fff"
-                color="rgba(0,0,0,.1)"
-                containerStyle={styles.iconContainer}
-                onPress={() => goBack(null)}
-                name="dots-three-vertical"
-              />
-            </View>
+            <Icon
+              type="entypo"
+              size={20}
+              reverse
+              reverseColor="#fff"
+              color="rgba(0,0,0,.1)"
+              containerStyle={styles.iconContainer}
+              onPress={() => goBack(null)}
+              name="dots-three-vertical"
+            />
           </View>
+        </View>
+        <ScrollView>
           <View style={styles.playListInfo}>
             <View style={styles.playListSection}>
               <TouchableOpacity
@@ -409,43 +406,43 @@ export default class PlayListDetail extends React.Component {
               </TouchableOpacity>
             </View>
           </View>
-        </View>
-        {isFetching ? (
-          <Loading />
-        ) : (
-          <View>
-            <View style={styles.playAllContainer}>
-              <TouchableNativeFeedback onPress={() => {}}>
-                <View style={styles.playAll}>
-                  <Icon name="play-circle-outline" size={28} color="#333" />
-                  <Text style={styles.playAllText}>
-                    播放全部
-                    <Text style={styles.playAllCountText}>
-                      (共{playlist.trackCount}首)
-                    </Text>
-                  </Text>
-                </View>
-              </TouchableNativeFeedback>
-
-              <TouchableNativeFeedback onPress={() => {}}>
-                <View style={styles.selectAll}>
-                  <Icon name="list" type="feather" size={18} color="#333" />
-                  <Text style={styles.selectAllText}>多选</Text>
-                </View>
-              </TouchableNativeFeedback>
-            </View>
-
+          {isFetching ? (
+            <Loading />
+          ) : (
             <View>
-              <FlatList
-                data={songsData}
-                renderItem={({ item }) => (
-                  <Song song={item} onSongPress={this.onSongPress} />
-                )}
-              />
+              <View style={styles.playAllContainer}>
+                <TouchableNativeFeedback onPress={() => {}}>
+                  <View style={styles.playAll}>
+                    <Icon name="play-circle-outline" size={28} color="#333" />
+                    <Text style={styles.playAllText}>
+                      播放全部
+                      <Text style={styles.playAllCountText}>
+                        (共{playlist.trackCount}首)
+                      </Text>
+                    </Text>
+                  </View>
+                </TouchableNativeFeedback>
+
+                <TouchableNativeFeedback onPress={() => {}}>
+                  <View style={styles.selectAll}>
+                    <Icon name="list" type="feather" size={18} color="#333" />
+                    <Text style={styles.selectAllText}>多选</Text>
+                  </View>
+                </TouchableNativeFeedback>
+              </View>
+
+              <View>
+                <FlatList
+                  data={songsData}
+                  renderItem={({ item }) => (
+                    <Song song={item} onSongPress={this.onSongPress} />
+                  )}
+                />
+              </View>
             </View>
-          </View>
-        )}
-      </ScrollView>
+          )}
+        </ScrollView>
+      </View>
     );
   }
 }
