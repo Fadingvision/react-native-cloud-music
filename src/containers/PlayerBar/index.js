@@ -25,7 +25,7 @@ export default class PlayerBar extends React.Component {
   loadStart = (...args) => {
     console.log(args);
   };
-  onEnd = (...args) => {
+  onEnd = () => {
     // determin wheter loop or what's the next song to play
   };
   videoError = () => {
@@ -39,8 +39,8 @@ export default class PlayerBar extends React.Component {
   };
 
   render() {
-    const { currentMusic, playList, playerStatus } = this.props;
-    const { navigate, togglePlayStatus } = this.props;
+    const { currentMusic, /* playList, */ playerStatus } = this.props;
+    const { /* navigate, */ togglePlayStatus } = this.props;
     if (!currentMusic) return null;
     return (
       <TouchableNativeFeedback
@@ -61,7 +61,7 @@ export default class PlayerBar extends React.Component {
               resizeMode="cover"
               repeat={playerStatus.loop} // Repeat forever.
               // Audio continues to play when app entering background.
-              playInBackground={true}
+              playInBackground
               // [iOS] Video continues to play when control or notification center are shown.
               playWhenInactive={false}
               // [iOS] Interval to fire onProgress (default to ~250ms)
@@ -90,7 +90,7 @@ export default class PlayerBar extends React.Component {
               resizeMode="contain"
             />
             <View style={styles.textContainer}>
-              <Text style={styles.songTitle}>{currentMusic.name}</Text>
+              <Text style={styles.songTitle} numberOfLines={2}>{currentMusic.name}</Text>
               <Text style={styles.artist}>{currentMusic.artist}</Text>
             </View>
           </View>
@@ -109,7 +109,8 @@ export default class PlayerBar extends React.Component {
                 tintColor={colors.mainColor}
                 backgroundColor="#333"
                 rotation={0}
-                children={() => (
+              >
+                {() => (
                   <Icon
                     containerStyle={[
                       styles.playButton,
@@ -121,15 +122,13 @@ export default class PlayerBar extends React.Component {
                     name={playerStatus.isPlaying ? 'ios-pause' : 'ios-play'}
                   />
                 )}
-              />
+              </AnimatedCircularProgress>
             </View>
           </TouchableOpacity>
           <Icon
             containerStyle={styles.iconContainer}
             size={33}
-            onPress={() => {
-              alert(12333);
-            }}
+            onPress={() => {}}
             color="#666"
             name="playlist-play"
           />

@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
     height: 55,
     backgroundColor: '#fff',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   albumPic: {
     width: 40,
@@ -20,10 +21,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
 
+  textContainer: {
+    flexWrap: 'nowrap',
+  },
+
   songTitle: {
     fontSize: 14,
+    overflow: 'hidden',
     color: '#333',
-    marginBottom: 5
   },
   artist: {
     fontSize: 10,
@@ -44,8 +49,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 5,
   },
-
-  backgroundVideo: {}
 });
 
 export default styles;

@@ -87,9 +87,7 @@ export const PLAYER_ACTION_HANDLERS = {
     }),
 
   [UPDATE_PLAYER_PERCENT]: (state, { time }) => {
-    const percent = parseFloat(
-      (time.currentTime / state.playerStatus.duration).toFixed(2)
-    ) * 100;
+    const percent = parseFloat((time.currentTime / state.playerStatus.duration).toFixed(2)) * 100;
     return state.merge({
       playerStatus: state.playerStatus.merge({
         currentTime: time.currentTime,
@@ -97,5 +95,5 @@ export const PLAYER_ACTION_HANDLERS = {
       })
     })
   }
-    
+
 };
