@@ -3,7 +3,7 @@ import { StyleSheet, ToastAndroid, View, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 // import { NavigationActions } from 'react-navigation';
-import { Ionicons } from '@expo/vector-icons'; // eslint-disable-line
+import { Icon } from 'react-native-elements';
 import actionCreators from 'ACTIONS/signin';
 import Validator from '../../utils/Validator';
 
@@ -92,7 +92,7 @@ export default class Signin extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.inputLine}>
-          <Ionicons name="md-phone-portrait" style={styles.iconPortrait} size={30} color="#ccc" />
+          <Icon name="phone-android" size={30} color="#ccc" />
           <TextInput
             style={styles.input}
             placeholder="请输入手机号"
@@ -100,7 +100,7 @@ export default class Signin extends React.Component {
           />
         </View>
         <View style={styles.inputLine}>
-          <Ionicons name="md-settings" style={styles.icon} size={25} color="#ccc" />
+          <Icon name="lock-outline" size={30} color="#ccc" />
           <TextInput
             style={styles.input}
             secureTextEntry

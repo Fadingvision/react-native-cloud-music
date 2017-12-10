@@ -4,5 +4,7 @@
     "androidStatusBar": {
       "backgroundColor": "#d23023"
     }
-  }
+  },
+  "name": "ReactNativeCloudMusic",
+  "displayName": "ReactNativeCloudMusic"
 }

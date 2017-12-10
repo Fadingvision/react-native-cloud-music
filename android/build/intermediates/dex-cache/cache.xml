@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/cxy/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_b83ff80481ed18ea66d17b2d35b37d4db8af786c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.0.1_5c4f40909f0912c46f52037127f3e575fdec855b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.0.1_c9477a038c1f8f46722c619c9f37de83aebdf2ac.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.3.0_48422c08ee7686d33d1c3f91ec5dde736d62fe96.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1_022acf0ddf832cb5f30a039a60c8fd37cbd4d833.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/okio-1.13.0_05aaeb9e9ac4f15f5e66f567dd815e5f5f9b023c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_75a2cf04d1c40e3d35f2d05593a0bebd2bf990d4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_b7c05bd172244a5b5095abc1d522d316804242b6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1_7b9928f4d671365812763f64dbbd203380d9ca65.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.1.0_8eadc1b5c7e4b13595bd15b6e41b0d470398d8d5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.49.5/jars/libs/infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_b00fdf0fd43565f529e63fbb010ad62846d2cb22.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_b89da6bb6839dc14099c1d3dc75e248a3bc44e8a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/com.yqritc/android-scalablevideoview/1.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="4394e0421a1e2c0cb691a783a393c192a84697ab">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/com.yqritc-android-scalablevideoview-1.0.4_9de668b0b634a4c85204142de19ab5d305d31721.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/okhttp-3.6.0_c61cdf20298ebfe95f93b73a6c8379e814c85d9e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_ec41946c25905d45ba21afacadcf33f3f2055732.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_ee5f70802fe7787ac5aca420f2cb34513dc1caec.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/ReactNativeCloudMusic/react-native-video/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="154aa15f170bedb7ec4f38f1544eebe3efd6c86f">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/ReactNativeCloudMusic-react-native-video-unspecified_7537541a7490772e656233dd27c0b6b254885976.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/javax.inject-1_82c3be717a2e514c614df4a596ee0a18066c78f8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_74c83a71d26dac1c3b0e8c2aae1fdf0c92e7d7a3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_3fa11681d17e9603808b27edc3c3087abe5f05f4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.49.5/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="610b957661a666d16b2cd4664c6bf4370226dfd2">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.49.5_12c562cf471a123b0adf166498eb259e38ac3690.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/ReactNativeCloudMusic/react-native-vector-icons/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5e4d7f180cb711732158fa982f85bca4a6ffd413">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/ReactNativeCloudMusic-react-native-vector-icons-unspecified_8bcae294d208ecea80cd141c63c694ba5a789d6a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_e233ae8fd357dd25316264ffd9b7cae8439d0ac3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="/home/cxy/code/github/ReactNativeCloudMusic/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_4a035bc344b95b427dc41f34d9292a74e2713080.jar" />
+    </item>
+
+</items>
