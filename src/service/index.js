@@ -7,6 +7,8 @@ const apiService = {
   getBanners: _fetch('/banner', 'GET'),
   getRecommendPlayLists: _fetch('/personalized', 'GET'),
   getPlayListDetail: _fetch('/playlist/detail', 'GET'),
+
+  getMusicUrl: _fetch('/music/url', 'GET'),
 };
 
 export default apiService;

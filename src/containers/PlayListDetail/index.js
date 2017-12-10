@@ -13,8 +13,10 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
-import actionCreators from 'ACTIONS/currentPlayListDetail';
+import detailActionCreators from 'ACTIONS/currentPlayListDetail';
+import playerActionCreators from 'ACTIONS/player';
 import color from 'THEMES/color';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -195,7 +197,7 @@ const songItemStyles = StyleSheet.create({
   },
 
   songName: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#333'
   },
 
@@ -211,14 +213,13 @@ const songItemStyles = StyleSheet.create({
     paddingLeft: 10
   }
 });
-
 const loadingStyles = StyleSheet.create({
   loadingContainer: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 200,
+    paddingTop: 200
   },
   loadingText: {
     color: '#333',
@@ -227,60 +228,21 @@ const loadingStyles = StyleSheet.create({
   }
 });
 
-function Song(props) {
-  return (
-    <TouchableNativeFeedback onPress={() => {}}>
-      <View style={songItemStyles.container}>
-        <View style={songItemStyles.songLeft}>
-          <Text style={songItemStyles.songOrder}>{props.order}</Text>
-        </View>
-
-        <View style={songItemStyles.songInfoContainer}>
-          <View style={songItemStyles.songInfo}>
-            <Text style={songItemStyles.songName}>
-              {props.name}
-              <Text>{props.alia}</Text>
-            </Text>
-            <Text style={songItemStyles.songCreator}>
-              {props.artist}-{props.album}
-            </Text>
-          </View>
-          <TouchableNativeFeedback onPress={() => {}}>
-            <View style={songItemStyles.songMore}>
-              <Icon
-                type="entypo"
-                size={15}
-                color="#999"
-                name="dots-three-vertical"
-              />
-            </View>
-          </TouchableNativeFeedback>
-        </View>
-      </View>
-    </TouchableNativeFeedback>
-  );
-}
-
-function Loading() {
-  return (
-    <View style={loadingStyles.loadingContainer}>
-      <ActivityIndicator size="small" color={color.mainColor} />
-      <Text style={loadingStyles.loadingText}>努力加载中...</Text>
-    </View>
-  );
-}
-
 @connect(
   state => ({
     detail: state.currentPlayListDetail,
     isFetching: state.currentPlayListDetail.isFetching
   }),
-  actionCreators
+  Object.assign({}, detailActionCreators, playerActionCreators)
 )
 export default class PlayListDetail extends React.Component {
   componentDidMount() {
     const { playListBasicInfo } = this.props.navigation.state.params;
     this.props.getDetail(playListBasicInfo.id);
+  }
+
+  onSongPress = song => {
+    this.props.play(song);
   }
 
   render() {
@@ -293,10 +255,12 @@ export default class PlayListDetail extends React.Component {
     const songsData = playlist.tracks.map((track, index) => ({
       order: index + 1,
       key: track.id,
+      id: track.id,
       name: track.name,
       alia: track.alia.join(','),
       artist: track.ar.map(item => item.name).join('/'),
-      album: track.al.name
+      album: track.al.name,
+      picUrl: track.al.picUrl,
     }));
     return (
       <ScrollView style={styles.container}>
@@ -367,29 +331,30 @@ export default class PlayListDetail extends React.Component {
                 <Text style={styles.playListTitle}>
                   {playListBasicInfo.name}
                 </Text>
-                {!isFetching && playlist.creator && (
-                  <TouchableOpacity
-                    activeOpacity={0.9}
-                    style={styles.creatorInfo}
-                    onPress={() => {}}
-                  >
-                    <Image
-                      source={{ uri: playlist.creator.avatarUrl }}
-                      style={styles.avatar}
-                      resizeMode="cover"
-                      borderRadius={15}
-                    />
-                    <Text style={styles.creatorName}>
-                      {playlist.creator.nickname}
-                    </Text>
-                    <Icon
-                      name="arrow-right"
-                      type="simple-line-icon"
-                      size={8}
-                      color="#f0f0f0"
-                    />
-                  </TouchableOpacity>
-                )}
+                {!isFetching &&
+                  playlist.creator && (
+                    <TouchableOpacity
+                      activeOpacity={0.9}
+                      style={styles.creatorInfo}
+                      onPress={() => {}}
+                    >
+                      <Image
+                        source={{ uri: playlist.creator.avatarUrl }}
+                        style={styles.avatar}
+                        resizeMode="cover"
+                        borderRadius={15}
+                      />
+                      <Text style={styles.creatorName}>
+                        {playlist.creator.nickname}
+                      </Text>
+                      <Icon
+                        name="arrow-right"
+                        type="simple-line-icon"
+                        size={8}
+                        color="#f0f0f0"
+                      />
+                    </TouchableOpacity>
+                  )}
               </View>
             </View>
 
@@ -473,7 +438,9 @@ export default class PlayListDetail extends React.Component {
             <View>
               <FlatList
                 data={songsData}
-                renderItem={({ item }) => <Song {...item} />}
+                renderItem={({ item }) => (
+                  <Song song={item} onSongPress={this.onSongPress} />
+                )}
               />
             </View>
           </View>
@@ -481,4 +448,48 @@ export default class PlayListDetail extends React.Component {
       </ScrollView>
     );
   }
+}
+
+
+function Song({ song, onSongPress }) {
+  return (
+    <TouchableNativeFeedback onPress={() => onSongPress(song)}>
+      <View style={songItemStyles.container}>
+        <View style={songItemStyles.songLeft}>
+          <Text style={songItemStyles.songOrder}>{song.order}</Text>
+        </View>
+
+        <View style={songItemStyles.songInfoContainer}>
+          <View style={songItemStyles.songInfo}>
+            <Text style={songItemStyles.songName}>
+              {song.name}
+              <Text>{song.alia}</Text>
+            </Text>
+            <Text style={songItemStyles.songCreator}>
+              {song.artist}-{song.album}
+            </Text>
+          </View>
+          <TouchableNativeFeedback onPress={() => {}}>
+            <View style={songItemStyles.songMore}>
+              <Icon
+                type="entypo"
+                size={15}
+                color="#999"
+                name="dots-three-vertical"
+              />
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+      </View>
+    </TouchableNativeFeedback>
+  );
+}
+
+function Loading() {
+  return (
+    <View style={loadingStyles.loadingContainer}>
+      <ActivityIndicator size="small" color={color.mainColor} />
+      <Text style={loadingStyles.loadingText}>努力加载中...</Text>
+    </View>
+  );
 }

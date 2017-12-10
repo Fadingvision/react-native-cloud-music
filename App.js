@@ -5,6 +5,7 @@ import { PersistGate } from 'redux-persist/es/integration/react';
 import { store, persistor } from 'REDUX/store';
 import rootSaga from 'SAGAS';
 import ReduxNavigation from 'NAVIGATIONS/ReduxNavigation';
+import PlayerBar from 'CONTAINERS/PlayerBar';
 
 store.runSaga(rootSaga);
 
@@ -29,6 +30,7 @@ export default function App() {
             backgroundColor="#d23023"
           />
           <ReduxNavigation />
+          <PlayerBar />
         </View>
       </PersistGate>
     </Provider>

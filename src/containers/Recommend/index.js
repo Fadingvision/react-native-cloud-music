@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import actionCreators from 'ACTIONS/recommend';
+import colors from 'THEMES/color'
 
 const { width } = Dimensions.get('window');
 
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
 
   fmIconContainer: {
     borderWidth: 1,
-    borderColor: '#f23023',
+    borderColor: colors.mainColor,
     borderRadius: 30,
     width: 60,
     height: 60,
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     left: new Date().getDate() < 9 ? 26 : 22,
     fontSize: 12,
     top: 24,
-    color: '#f23023'
+    color: colors.mainColor
   },
 
   fmBox: {
@@ -195,7 +196,7 @@ export default class Recommend extends React.Component {
               name="radio"
               size={30}
               underlayColor="white"
-              color="#f23023"
+              color={colors.mainColor}
             />
           </View>
           <Text style={styles.fmText}>私人FM</Text>
@@ -206,7 +207,7 @@ export default class Recommend extends React.Component {
               type="font-awesome"
               name="calendar-o"
               size={30}
-              color="#f23023"
+              color={colors.mainColor}
             />
             <Text style={styles.date}>{new Date().getDate()}</Text>
           </View>
@@ -218,7 +219,7 @@ export default class Recommend extends React.Component {
               type="material-community"
               name="chart-bar-stacked"
               size={30}
-              color="#f23023"
+              color={colors.mainColor}
             />
           </View>
           <Text style={styles.fmText}>云音乐热歌榜</Text>
