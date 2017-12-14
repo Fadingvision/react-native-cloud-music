@@ -7,6 +7,7 @@ import Dj from 'CONTAINERS/Dj';
 import RankList from 'CONTAINERS/RankList';
 import MyMusic from 'CONTAINERS/MyMusic';
 import News from 'CONTAINERS/News';
+import Player from 'CONTAINERS/Player';
 import SideBar from 'CONTAINERS/SideBar';
 import MainTabBar from 'COMPONENTS/MainTabBar';
 import HomeTabBar from 'COMPONENTS/HomeTabBar';
@@ -101,6 +102,12 @@ const RootNavigator = StackNavigator({
   },
   PlayListDetail: {
     screen: PlayListDetail,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Player: {
+    screen: Player,
     navigationOptions: {
       header: null,
     },

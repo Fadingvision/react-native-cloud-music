@@ -32,7 +32,9 @@ module.exports = {
     'comma-dangle': 0,
     'no-unused-expressions': 0,
     'class-methods-use-this': 0,
+    'global-require': 0,
     'semi': 0,
+    'no-mixed-operators': 1,
     'arrow-parens': [2, 'as-needed']
   },
 

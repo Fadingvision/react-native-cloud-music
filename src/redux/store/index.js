@@ -43,7 +43,7 @@ store.close = () => store.dispatch(END);
 export const persistor = persistStore(store, null);
 
 // clear storage when app is reloaded.
-if (__DEV__) persistor.purge();
+// if (__DEV__) persistor.purge();
 
 
 if (module.hot) {

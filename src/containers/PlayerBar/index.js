@@ -40,12 +40,12 @@ export default class PlayerBar extends React.Component {
 
   render() {
     const { currentMusic, /* playList, */ playerStatus } = this.props;
-    const { /* navigate, */ togglePlayStatus } = this.props;
+    const { navigate, togglePlayStatus } = this.props;
     if (!currentMusic) return null;
     return (
       <TouchableNativeFeedback
         onPress={() => {
-          /* navigate('Player') */
+          navigate('Player')
         }}
       >
         <View style={styles.container}>
