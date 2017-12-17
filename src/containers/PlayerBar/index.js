@@ -15,7 +15,15 @@ import actionCreator from 'ACTIONS/player';
 import colors from 'THEMES/color';
 import styles from './style';
 
-@connect(state => state.player, actionCreator)
+const NonePlayerScreens = [
+  'Player',
+  'Comment',
+];
+
+@connect(state => ({
+  ...state.player,
+  nav: state.nav,
+}), actionCreator)
 export default class PlayerBar extends React.Component {
   componentWillMount() {
     // disable the player when component inital mount
@@ -27,6 +35,9 @@ export default class PlayerBar extends React.Component {
   };
   onEnd = () => {
     // determin wheter loop or what's the next song to play
+    const { playerStatus } = this.props;
+    if (playerStatus.mode === 'loop') return;
+    this.props.skipNext();
   };
   videoError = () => {
     ToastAndroid.show('网络错误', ToastAndroid.SHORT);
@@ -40,15 +51,23 @@ export default class PlayerBar extends React.Component {
 
   render() {
     const { currentMusic, /* playList, */ playerStatus } = this.props;
-    const { navigate, togglePlayStatus } = this.props;
+    const { navigate, togglePlayStatus, nav } = this.props;
+
     if (!currentMusic) return null;
+
+    const containerStyle = [styles.container];
+    const currentRouterName = nav.routes[nav.index].routeName;
+    if (NonePlayerScreens.indexOf(currentRouterName) !== -1) {
+      containerStyle.push(styles.hidden);
+    }
+
     return (
       <TouchableNativeFeedback
         onPress={() => {
           navigate('Player')
         }}
       >
-        <View style={styles.container}>
+        <View style={containerStyle}>
           {currentMusic.musicUrl && (
             <Video
               source={{ uri: currentMusic.musicUrl }} // Can be a URL or a local file.
@@ -59,7 +78,7 @@ export default class PlayerBar extends React.Component {
               paused={!playerStatus.isPlaying} // Pauses playback entirely.
               // Fill the whole screen at aspect ratio.*
               resizeMode="cover"
-              repeat={playerStatus.loop} // Repeat forever.
+              repeat={playerStatus.mode === 'loop'} // Repeat forever.
               // Audio continues to play when app entering background.
               playInBackground
               // [iOS] Video continues to play when control or notification center are shown.
@@ -71,7 +90,7 @@ export default class PlayerBar extends React.Component {
               // Callback when video loads
               onLoad={this.props.updateDuration}
               // Callback every ~250ms with currentTime
-              onProgress={this.props.updatePercent}
+              // onProgress={this.props.updatePercent}
               // Callback when playback finishes
               onEnd={this.onEnd}
               // Callback when video cannot be loaded

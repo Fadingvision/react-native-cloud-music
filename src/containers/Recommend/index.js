@@ -141,7 +141,7 @@ export default class Recommend extends React.Component {
 
   componentDidMount() {
     if (!this.props.banners.length) this.props.getBanners();
-    /* if (!this.props.recommendPlayLists.length) */this.props.getRecommendPlayLists();
+    if (!this.props.recommendPlayLists.length) this.props.getRecommendPlayLists();
     setTimeout(() => {
       this.setState({
         isSwiperVisible: true,

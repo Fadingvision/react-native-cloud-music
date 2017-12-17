@@ -45,6 +45,10 @@ const styles = StyleSheet.create({
     height: 50,
   },
 
+  hidden: {
+    height: 0,
+  },
+
   playButton: {
     position: 'absolute',
     top: 5,

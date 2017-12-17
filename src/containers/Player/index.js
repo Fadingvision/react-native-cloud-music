@@ -1,17 +1,14 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  // Dimensions,
-} from 'react-native';
+import { View, Text, Image, Animated, Dimensions, Easing } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import actionCreator from 'ACTIONS/player';
 import Progress from 'COMPONENTS/Progress';
 import styles from './style';
 
-// const { width } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
+
+console.log(height);
 
 function leftPart(number) {
   return number < 10 ? `0${number}` : `${number}`;
@@ -20,20 +17,88 @@ function leftPart(number) {
 function turnSecondsToMinutes(seconds) {
   const minutes = Math.floor(parseFloat(seconds) / 60);
   const leftSeconds = Math.floor(seconds - 60 * minutes);
-  return `${leftPart(minutes)}:${leftPart(leftSeconds)}`
+  return `${leftPart(minutes)}:${leftPart(leftSeconds)}`;
+}
+
+const ModeMap = {
+  loop: {
+    type: undefined,
+    name: 'loop',
+  },
+  listLoop: {
+    type: 'simple-line-icon',
+    name: 'loop',
+  },
+  random: {
+    type: 'font-awesome',
+    name: 'random',
+  }
 }
 
 @connect(state => state.player, actionCreator)
 export default class Player extends React.Component {
-  componentWillMount() {
+  state = {
+    angle: new Animated.Value(0),
+    needle: new Animated.Value(0),
+  };
 
+  componentDidMount() {
+    const { playerStatus } = this.props;
+    if (playerStatus.isPlaying) this.spring();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { playerStatus } = this.props;
+    if (prevProps.playerStatus.isPlaying && !playerStatus.isPlaying) {
+      Animated.timing(this.state.angle).stop();
+      this.moveNeedle(1);
+    } else if (!prevProps.playerStatus.isPlaying && playerStatus.isPlaying) {
+      this.moveNeedle(0);
+      this.spring();
+    }
+  }
+
+  moveNeedle(toValue) {
+    Animated.timing(this.state.needle, {
+      toValue,
+      duration: 500,
+      easing: Easing.linear
+    }).start();
+  }
+
+  spring() {
+    Animated.timing(this.state.angle, {
+      toValue: 1,
+      duration: 30000,
+      easing: Easing.linear
+    }).start(this.onSpringCompletion);
+  }
+
+  onSpringCompletion = ({ finished }) => {
+    if (finished) {
+      this.state.angle.setValue(0);
+      this.spring();
+    }
   }
 
   render() {
     const { currentMusic, playerStatus } = this.props;
-    const { togglePlayStatus } = this.props;
+    const {
+      togglePlayStatus, skipPrevious, skipNext, changePlayMode
+    } = this.props;
     const { goBack } = this.props.navigation;
-    if (!currentMusic) return null;
+
+    const spin = this.state.angle.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '360deg']
+    });
+
+    const needleSpin = this.state.needle.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '-45deg']
+    })
+
+
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -48,12 +113,8 @@ export default class Player extends React.Component {
             onPress={() => goBack(null)}
           />
           <View style={styles.headerTitleContainer}>
-            <Text style={styles.headerTitle}>
-              {currentMusic.name}
-            </Text>
-            <Text style={styles.headerArtist}>
-              {currentMusic.artist}
-            </Text>
+            <Text style={styles.headerTitle}>{currentMusic.name}</Text>
+            <Text style={styles.headerArtist}>{currentMusic.artist}</Text>
           </View>
           <View style={styles.headerRight}>
             <Icon
@@ -70,16 +131,20 @@ export default class Player extends React.Component {
         </View>
 
         <View style={styles.playerBody}>
-          <View style={[styles.albumContainer]}>
+          <Animated.Image
+            style={[styles.needle, {
+              transform: [{ rotateZ: needleSpin }]
+            }]}
+            source={require('IMAGES/needle.png')}
+            resizeMode="contain"
+          />
+          <Animated.View style={[styles.albumContainer, {
+            transform: [{ rotate: spin }]
+          }]}
+          >
             <Image
               style={{ width: 320, height: 320 }}
               source={require('IMAGES/album.png')}
-              resizeMode="contain"
-            />
-
-            <Image
-              style={[styles.needle]}
-              source={require('IMAGES/needle.png')}
               resizeMode="contain"
             />
             <Image
@@ -88,7 +153,7 @@ export default class Player extends React.Component {
               resizeMode="cover"
               borderRadius={100}
             />
-          </View>
+          </Animated.View>
 
           <View style={styles.songOpBar}>
             <Icon
@@ -137,9 +202,13 @@ export default class Player extends React.Component {
 
         <View style={styles.playerContainer}>
           <View style={styles.progressContainer}>
-            <Text style={styles.currentTime}>{turnSecondsToMinutes(playerStatus.currentTime)}</Text>
+            <Text style={styles.currentTime}>
+              {turnSecondsToMinutes(playerStatus.currentTime)}
+            </Text>
             <Progress progress={parseInt(playerStatus.percent, 10)} />
-            <Text style={styles.duration}>{turnSecondsToMinutes(playerStatus.duration)}</Text>
+            <Text style={styles.duration}>
+              {turnSecondsToMinutes(playerStatus.duration)}
+            </Text>
           </View>
           <View style={styles.controlContainer}>
             <Icon
@@ -148,8 +217,9 @@ export default class Player extends React.Component {
               reverseColor="#c1c1c1"
               color="rgba(0,0,0,.1)"
               containerStyle={styles.songOpIconContainer}
-              onPress={() => {}}
-              name="loop"
+              onPress={changePlayMode}
+              name={ModeMap[playerStatus.mode].name}
+              type={ModeMap[playerStatus.mode].type}
             />
 
             <View style={styles.playControl}>
@@ -160,7 +230,7 @@ export default class Player extends React.Component {
                 reverseColor="#fff"
                 color="rgba(0,0,0,.1)"
                 containerStyle={styles.songOpIconContainer}
-                onPress={() => {}}
+                onPress={skipPrevious}
                 name="skip-previous"
               />
               <Icon
@@ -172,7 +242,11 @@ export default class Player extends React.Component {
                 onPress={() => {
                   togglePlayStatus(!playerStatus.isPlaying);
                 }}
-                name={playerStatus.isPlaying ? 'pause-circle-outline' : 'play-circle-outline'}
+                name={
+                  playerStatus.isPlaying
+                    ? 'pause-circle-outline'
+                    : 'play-circle-outline'
+                }
               />
               <Icon
                 type="material-community"
@@ -181,7 +255,7 @@ export default class Player extends React.Component {
                 reverseColor="#fff"
                 color="rgba(0,0,0,.1)"
                 containerStyle={styles.songOpIconContainer}
-                onPress={() => {}}
+                onPress={skipNext}
                 name="skip-next"
               />
             </View>

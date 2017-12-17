@@ -45,18 +45,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, .3)',
     alignItems: 'center',
+    position: 'relative',
     justifyContent: 'space-between',
   },
 
   albumContainer: {
-    paddingTop: 110,
+    marginTop: 50,
     width: 320,
     height: 320,
     position: 'relative',
   },
   albumPic: {
     position: 'absolute',
-    marginTop: 110,
     left: 60,
     top: 60,
     width: 200,
@@ -65,9 +65,10 @@ const styles = StyleSheet.create({
   needle: {
     position: 'absolute',
     top: 0,
-    left: 120,
+    left: 140,
     width: 150,
-    height: 190
+    height: 120,
+    zIndex: 99,
   },
 
   // songOpBar

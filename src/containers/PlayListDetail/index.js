@@ -240,6 +240,11 @@ export default class PlayListDetail extends React.Component {
 
   onSongPress = song => {
     this.props.play(song);
+    this.props.addPlayList(this.songsData);
+  }
+
+  playAll = () => {
+    this.props.playAll(this.songsData);
   }
 
   render() {
@@ -259,6 +264,8 @@ export default class PlayListDetail extends React.Component {
       album: track.al.name,
       picUrl: track.al.picUrl,
     }));
+    this.songsData = songsData;
+
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor="rgba(0, 0, 0, .3)" />
@@ -411,7 +418,7 @@ export default class PlayListDetail extends React.Component {
           ) : (
             <View>
               <View style={styles.playAllContainer}>
-                <TouchableNativeFeedback onPress={() => {}}>
+                <TouchableNativeFeedback onPress={this.playAll}>
                   <View style={styles.playAll}>
                     <Icon name="play-circle-outline" size={28} color="#333" />
                     <Text style={styles.playAllText}>

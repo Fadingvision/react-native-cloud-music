@@ -39,8 +39,14 @@
 - [x] 热更新报错的问题(在replaceReducer中添加persistReducer)
 - [ ] StatusBar切换页面时感觉颜色切换有延迟卡顿，体验不好，寻找更好的解决方案
 - [ ] 处理子页面的安卓返回键控制
-- [ ] 处理背景色渐变
+- [ ] 处理动画卡顿
 
+
+## Features
+
+- [ ] 支持动画的transform-origin
+- [ ] 支持背景色渐变
+- [ ] 支持进度条拖动
 
 
 
