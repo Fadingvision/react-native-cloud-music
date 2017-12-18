@@ -193,7 +193,29 @@ export default {
           break;
         }
         case 'random': {
+          // const isCurrentMusic = song => song.id === currentMusic.id;
+          // const isLastOneOfArray = (arr, index) => index === arr.length - 1;
+          // const isInArray = index => index !== -1;
+          // const dispatchMusic = song => dispatch({ type: PLAY_MUSIC, song });
+          // const dispatchHistory = song => dispatch({ type: CHANGE_HISTORY, song });
+          // const invoke = fn => fn();
+
           if (history.length > 1) {
+            /* FP form */
+            // const index = R.findIndex(isCurrentMusic)(history);
+            // R.when(
+            //   isInArray,
+            //   R.ifElse(
+            //     R.curry(isLastOneOfArray)(history),
+            //     R.compose(dispatchMusic, R.partialRight(R.indexOf, history))
+            //     () => {
+            //       const song = getRandomMusic();
+            //       dispatchMusic(song);
+            //       dispatchHistory(song);
+            //     }
+            //   )
+            // )(index);
+
             history.forEach((historySong, index) => {
               if (historySong.id === currentMusic.id) {
                 if (index !== history.length - 1) {
