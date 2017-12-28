@@ -1,20 +1,7 @@
 
+**[WIP]**
 
-## 环境配置
-
-1. 调试
-
-- expo (安装expo之后就可以扫码调试，确保手机和电脑在同一个局域网中（即前三位的Ip需保持一致）,调试体验一般)。
-
-- 模拟器（推荐genymotion,确保android sdk的安装（android studio））
-
-  环境变量的配置：必须确保项目中使用的，$ANDROID_HOME的系统环境变量（通常也是项目默认使用的）,genymotion使用的sdk路径保持完全一致。
-
-- 真机调试：保证上面环境配置正确的同时，让你的手机开启USB调试模式即可。
-
-
-
-## Development
+## Stack
 
 ### redux, react-redux
 
@@ -32,6 +19,31 @@
 - apiSauce => 基于fetch的二次封装
 - react-native-elements => react-native UI库
 - storyBook => out of box的开发测试helper
+
+## Screenshots
+
+![Home](https://github.com/blackLearning/react-native-cloud-music/blob/master/screenshots/Screenshot_20171228-231458.png?raw=true)
+
+![PlayList](https://github.com/blackLearning/react-native-cloud-music/blob/master/screenshots/Screenshot_20171228-231424.png?raw=true)
+
+![player](https://github.com/blackLearning/react-native-cloud-music/blob/master/screenshots/Screenshot_20171228-231626.png?raw=true)
+
+![signin](https://github.com/blackLearning/react-native-cloud-music/blob/master/screenshots/Screenshot_20171228-231709.png?raw=true)
+
+
+
+## 环境配置
+
+### 调试
+
+- expo (安装expo之后就可以扫码调试，确保手机和电脑在同一个局域网中（即前三位的Ip需保持一致）,调试体验一般)。
+
+- 模拟器（推荐genymotion,确保android sdk的安装（android studio））
+
+  环境变量的配置：必须确保项目中使用的，$ANDROID_HOME的系统环境变量（通常也是项目默认使用的）,genymotion使用的sdk路径保持完全一致。
+
+- 真机调试：保证上面环境配置正确的同时，让你的手机开启USB调试模式即可。
+
 
 ## Issues
 
