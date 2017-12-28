@@ -90,7 +90,7 @@ export default class PlayerBar extends React.Component {
               // Callback when video loads
               onLoad={this.props.updateDuration}
               // Callback every ~250ms with currentTime
-              // onProgress={this.props.updatePercent}
+              onProgress={this.props.updatePercent}
               // Callback when playback finishes
               onEnd={this.onEnd}
               // Callback when video cannot be loaded
