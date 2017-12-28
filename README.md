@@ -22,11 +22,10 @@
 
 ## Screenshots
 
-![Home](https://github.com/blackLearning/react-native-cloud-music/blob/master/screenshots/Screenshot_20171228-231458.png?raw=true =700)
-![PlayList](https://github.com/blackLearning/react-native-cloud-music/blob/master/screenshots/Screenshot_20171228-231424.png?raw=true =700)
-![player](https://github.com/blackLearning/react-native-cloud-music/blob/master/screenshots/Screenshot_20171228-231626.png?raw=true =700)
-![signin](https://github.com/blackLearning/react-native-cloud-music/blob/master/screenshots/Screenshot_20171228-231709.png?raw=true =700)
-
+<img width="700" src="https://github.com/blackLearning/react-native-cloud-music/blob/master/screenshots/Screenshot_20171228-231458.png?raw=true" alt="Home">
+<img width="700" src="https://github.com/blackLearning/react-native-cloud-music/blob/master/screenshots/Screenshot_20171228-231424.png?raw=true" alt="PlayList">
+<img width="700" src="https://github.com/blackLearning/react-native-cloud-music/blob/master/screenshots/Screenshot_20171228-231626.png?raw=true" alt="player">
+<img width="700" src="https://github.com/blackLearning/react-native-cloud-music/blob/master/screenshots/Screenshot_20171228-231709.png?raw=true" alt="signin">
 
 
 ## 环境配置
