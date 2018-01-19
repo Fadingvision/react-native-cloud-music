@@ -9,14 +9,17 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   TouchableNativeFeedback,
+  Dimensions,
   Image
 } from 'react-native';
+import Drawer from 'react-native-drawer';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
 import detailActionCreators from 'ACTIONS/currentPlayListDetail';
 import playerActionCreators from 'ACTIONS/player';
 import color from 'THEMES/color';
 
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -233,6 +236,10 @@ const loadingStyles = StyleSheet.create({
   Object.assign({}, detailActionCreators, playerActionCreators)
 )
 export default class PlayListDetail extends React.Component {
+  state = {
+    isDrawerOpen: false
+  };
+
   componentDidMount() {
     const { playListBasicInfo } = this.props.navigation.state.params;
     this.props.getDetail(playListBasicInfo.id);
@@ -241,11 +248,15 @@ export default class PlayListDetail extends React.Component {
   onSongPress = song => {
     this.props.play(song);
     this.props.addPlayList(this.songsData);
-  }
+  };
 
   playAll = () => {
     this.props.playAll(this.songsData);
-  }
+  };
+
+  openControlPanel = () => {
+    this.setState({ isDrawerOpen: true });
+  };
 
   render() {
     const { playListBasicInfo } = this.props.navigation.state.params;
@@ -262,7 +273,7 @@ export default class PlayListDetail extends React.Component {
       alia: track.alia.join(','),
       artist: track.ar.map(item => item.name).join('/'),
       album: track.al.name,
-      picUrl: track.al.picUrl,
+      picUrl: track.al.picUrl
     }));
     this.songsData = songsData;
 
@@ -304,158 +315,203 @@ export default class PlayListDetail extends React.Component {
             />
           </View>
         </View>
-        <ScrollView>
-          <View style={styles.playListInfo}>
-            <View style={styles.playListSection}>
-              <TouchableOpacity
-                activeOpacity={0.9}
-                style={styles.playListCover}
-                onPress={() => {}}
-              >
-                <Image
-                  source={{ uri: playListBasicInfo.picUrl }}
-                  style={{ width: 140, height: 140 }}
-                  resizeMode="contain"
-                />
-                <View style={styles.sectionItemLabel}>
-                  <Icon
-                    type="feather"
-                    name="headphones"
-                    size={11}
-                    color="white"
-                  />
-                  <Text style={styles.sectionItemLabelText}>
-                    {playListBasicInfo.playCount > 100000
-                      ? `${+Math.floor(playListBasicInfo.playCount / 10000)}万`
-                      : parseInt(playListBasicInfo.playCount, 10)}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <View style={styles.playListDesc}>
-                <Text style={styles.playListTitle}>
-                  {playListBasicInfo.name}
-                </Text>
-                {!isFetching &&
-                  playlist.creator && (
-                    <TouchableOpacity
-                      activeOpacity={0.9}
-                      style={styles.creatorInfo}
-                      onPress={() => {}}
-                    >
-                      <Image
-                        source={{ uri: playlist.creator.avatarUrl }}
-                        style={styles.avatar}
-                        resizeMode="cover"
-                        borderRadius={15}
-                      />
-                      <Text style={styles.creatorName}>
-                        {playlist.creator.nickname}
-                      </Text>
-                      <Icon
-                        name="arrow-right"
-                        type="simple-line-icon"
-                        size={8}
-                        color="#f0f0f0"
-                      />
-                    </TouchableOpacity>
-                  )}
-              </View>
-            </View>
 
-            <View style={styles.operateBar}>
-              <TouchableOpacity
-                activeOpacity={0.6}
-                disabled={isFetching}
-                style={styles.operateItem}
-              >
-                <Icon name="add-to-queue" size={22} color="white" />
-                <Text style={styles.operateText}>
-                  {isFetching ? '收藏' : playlist.subscribedCount}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.6}
-                disabled={isFetching}
-                style={styles.operateItem}
-              >
-                <Icon
-                  type="material-community"
-                  name="comment-text-outline"
-                  size={22}
-                  color="white"
-                />
-                <Text style={styles.operateText}>
-                  {isFetching ? '评论' : playlist.commentCount}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.6}
-                disabled={isFetching}
-                style={styles.operateItem}
-              >
-                <Icon
-                  type="simple-line-icon"
-                  name="share"
-                  size={22}
-                  color="white"
-                />
-                <Text style={styles.operateText}>
-                  {isFetching ? '分享' : playlist.shareCount}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.6}
-                disabled={isFetching}
-                style={styles.operateItem}
-              >
-                <Icon type="feather" name="download" size={24} color="white" />
-                <Text style={styles.operateText}>下载</Text>
-              </TouchableOpacity>
+        <Drawer
+          side="bottom"
+          type="overlay"
+          tapToClose
+          acceptTap
+          panCloseMask={0.6}
+          openDrawerOffset={0.6}
+          useInteractionManager
+          open={this.state.isDrawerOpen}
+          style={{
+            drawer: {
+              shadowColor: '#000000',
+              shadowOpacity: 0.8,
+              shadowRadius: 3,
+            },
+            drawerOverlay: {
+              backgroundColor: '#00000'
+            },
+            mainOverlay: {
+              background: '#00000'
+            }
+          }}
+          content={
+            <View style={{
+              width,
+              height: 300,
+              position: 'relative',
+              zIndex: 9999,
+              backgroundColor: '#fff'
+            }}
+            >
+              <Text>1234ss44</Text>
             </View>
-          </View>
-          {isFetching ? (
-            <Loading />
-          ) : (
-            <View>
-              <View style={styles.playAllContainer}>
-                <TouchableNativeFeedback onPress={this.playAll}>
-                  <View style={styles.playAll}>
-                    <Icon name="play-circle-outline" size={28} color="#333" />
-                    <Text style={styles.playAllText}>
-                      播放全部
-                      <Text style={styles.playAllCountText}>
-                        (共{playlist.trackCount}首)
-                      </Text>
+          }
+        >
+          <ScrollView>
+            <View style={styles.playListInfo}>
+              <View style={styles.playListSection}>
+                <TouchableOpacity
+                  activeOpacity={0.9}
+                  style={styles.playListCover}
+                  onPress={() => {}}
+                >
+                  <Image
+                    source={{ uri: playListBasicInfo.picUrl }}
+                    style={{ width: 140, height: 140 }}
+                    resizeMode="contain"
+                  />
+                  <View style={styles.sectionItemLabel}>
+                    <Icon
+                      type="feather"
+                      name="headphones"
+                      size={11}
+                      color="white"
+                    />
+                    <Text style={styles.sectionItemLabelText}>
+                      {playListBasicInfo.playCount > 100000
+                        ? `${+Math.floor(playListBasicInfo.playCount / 10000)}万`
+                        : parseInt(playListBasicInfo.playCount, 10)}
                     </Text>
                   </View>
-                </TouchableNativeFeedback>
-
-                <TouchableNativeFeedback onPress={() => {}}>
-                  <View style={styles.selectAll}>
-                    <Icon name="list" type="feather" size={18} color="#333" />
-                    <Text style={styles.selectAllText}>多选</Text>
-                  </View>
-                </TouchableNativeFeedback>
+                </TouchableOpacity>
+                <View style={styles.playListDesc}>
+                  <Text style={styles.playListTitle}>
+                    {playListBasicInfo.name}
+                  </Text>
+                  {!isFetching &&
+                    playlist.creator && (
+                      <TouchableOpacity
+                        activeOpacity={0.9}
+                        style={styles.creatorInfo}
+                        onPress={() => {}}
+                      >
+                        <Image
+                          source={{ uri: playlist.creator.avatarUrl }}
+                          style={styles.avatar}
+                          resizeMode="cover"
+                          borderRadius={15}
+                        />
+                        <Text style={styles.creatorName}>
+                          {playlist.creator.nickname}
+                        </Text>
+                        <Icon
+                          name="arrow-right"
+                          type="simple-line-icon"
+                          size={8}
+                          color="#f0f0f0"
+                        />
+                      </TouchableOpacity>
+                    )}
+                </View>
               </View>
 
-              <View>
-                <FlatList
-                  data={songsData}
-                  renderItem={({ item }) => (
-                    <Song song={item} onSongPress={this.onSongPress} />
-                  )}
-                />
+              <View style={styles.operateBar}>
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  disabled={isFetching}
+                  style={styles.operateItem}
+                >
+                  <Icon name="add-to-queue" size={22} color="white" />
+                  <Text style={styles.operateText}>
+                    {isFetching ? '收藏' : playlist.subscribedCount}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  disabled={isFetching}
+                  style={styles.operateItem}
+                >
+                  <Icon
+                    type="material-community"
+                    name="comment-text-outline"
+                    size={22}
+                    color="white"
+                  />
+                  <Text style={styles.operateText}>
+                    {isFetching ? '评论' : playlist.commentCount}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  disabled={isFetching}
+                  style={styles.operateItem}
+                >
+                  <Icon
+                    type="simple-line-icon"
+                    name="share"
+                    size={22}
+                    color="white"
+                  />
+                  <Text style={styles.operateText}>
+                    {isFetching ? '分享' : playlist.shareCount}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  disabled={isFetching}
+                  style={styles.operateItem}
+                >
+                  <Icon
+                    type="feather"
+                    name="download"
+                    size={24}
+                    color="white"
+                  />
+                  <Text style={styles.operateText}>下载</Text>
+                </TouchableOpacity>
               </View>
             </View>
-          )}
-        </ScrollView>
+            {isFetching ? (
+              <Loading />
+            ) : (
+              <View>
+                <View style={styles.playAllContainer}>
+                  <TouchableNativeFeedback onPress={this.playAll}>
+                    <View style={styles.playAll}>
+                      <Icon name="play-circle-outline" size={28} color="#333" />
+                      <Text style={styles.playAllText}>
+                        播放全部
+                        <Text style={styles.playAllCountText}>
+                          (共{playlist.trackCount}首)
+                        </Text>
+                      </Text>
+                    </View>
+                  </TouchableNativeFeedback>
+
+                  <TouchableNativeFeedback onPress={() => {}}>
+                    <View style={styles.selectAll}>
+                      <Icon name="list" type="feather" size={18} color="#333" />
+                      <Text style={styles.selectAllText}>多选</Text>
+                    </View>
+                  </TouchableNativeFeedback>
+                </View>
+
+                <View>
+                  <FlatList
+                    data={songsData}
+                    renderItem={({ item }) => (
+                      <Song
+                        song={item}
+                        onSongPress={this.onSongPress}
+                        openControlPanel={this.openControlPanel}
+                      />
+                    )}
+                  />
+                </View>
+              </View>
+            )}
+          </ScrollView>
+        </Drawer>
       </View>
     );
   }
 }
 
-
-function Song({ song, onSongPress }) {
+function Song({ song, onSongPress, openControlPanel }) {
   return (
     <TouchableNativeFeedback onPress={() => onSongPress(song)}>
       <View style={songItemStyles.container}>
@@ -473,7 +529,7 @@ function Song({ song, onSongPress }) {
               {song.artist}-{song.album}
             </Text>
           </View>
-          <TouchableNativeFeedback onPress={() => {}}>
+          <TouchableNativeFeedback onPress={() => openControlPanel(song)}>
             <View style={songItemStyles.songMore}>
               <Icon
                 type="entypo"
